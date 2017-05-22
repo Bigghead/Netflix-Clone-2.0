@@ -1,3 +1,5 @@
+import { Http } from '@angular/http';
+import { MovieDataService } from '../../Services/moviedata.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private movieData: MovieDataService, private http: Http) { }
 
   ngOnInit() {
+
+  }
+
+  logIn(){
+    this.http.get('http://localhost:3000/login')
+        .subscribe(
+          (res) => console.log(res)
+        )
   }
 
 }
