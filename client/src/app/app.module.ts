@@ -25,8 +25,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    LatestComponent,
-    UpcomingComponent,
     MovieListComponent,
     MovieRowComponent
   ],
