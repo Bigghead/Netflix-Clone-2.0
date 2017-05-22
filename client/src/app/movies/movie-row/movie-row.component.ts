@@ -4,6 +4,8 @@ import { MovieDataService } from '../../Services/moviedata.service';
 import { Http } from '@angular/http';
 import { Component, OnInit, Injectable, Input, ElementRef } from '@angular/core';
 
+import { Flickity } from 'flickity';
+
 declare var $: any;
 @Component({
   selector: 'app-movie-row',
@@ -65,7 +67,7 @@ export class MovieRowComponent implements OnInit {
           this.movieData.allMovies = newArr;
           this.movieData.allDataFetched.next(true);
 
-          setTimeout(this.loadFlickity, 200);
+          setTimeout(this.loadFlickity);
           }
         )
 
@@ -78,7 +80,8 @@ export class MovieRowComponent implements OnInit {
   }
 
   loadFlickity() {
-    $('.carousel').flickity({
+    const el = document.querySelector('.carousel');
+    const carouselOn = new Flickity(el, {
       // contain: true,
       freeScroll: true,
       wrapAround: true,
