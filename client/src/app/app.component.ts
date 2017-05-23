@@ -1,3 +1,4 @@
+import { AuthService } from './Services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
@@ -8,8 +9,9 @@ import 'rxjs/Rx';
 })
 export class AppComponent implements OnInit{
 
-  constructor( private http: Http){
+  constructor( private http: Http, public authService: AuthService){
 
+    authService.handleAuthentication();
   }
   title = 'Welcome';
 

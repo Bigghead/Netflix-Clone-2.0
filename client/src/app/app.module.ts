@@ -1,3 +1,4 @@
+import { AuthService } from './Services/authentication.service';
 
 import { MovieDataService } from './Services/moviedata.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [MovieDataService],
+  providers: [MovieDataService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,9 +12,6 @@ export class AuthCallbackComponent implements OnInit {
   constructor(private http: Http, private currentRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.router.navigate(['/movies']);
-    }, 1000)
   }
 
 }

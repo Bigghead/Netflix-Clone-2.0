@@ -65,7 +65,7 @@ export class MovieRowComponent implements OnInit {
           this.movieData.allMovies = newArr;
           this.movieData.allDataFetched.next(true);
 
-          setTimeout(this.loadFlickity, 200);
+          setTimeout(this.loadFlickity, 400);
           }
         )
 

@@ -24,14 +24,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, './client/dist')));
 
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
-  next();
-});
+  app.use(function(req, res, next) {
+        res.header('Access-Control-Allow-Credentials', true);
+        res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+        if ('OPTIONS' == req.method) {
+            res.send(200);
+        } else {
+            next();
+        }
+    });
 
 app.use(passportConfig);
 
@@ -41,10 +46,16 @@ app.get('/login',
     console.log('Testing Auth, 1');
   });
 
-app.get('/callback',
-  passport.authenticate('auth0'), function (req, res) {
-    res.redirect('http://localhost:4200/movies?loggedIn=true');
-  });
+app.get('/callback', function(req, res, next) {
+  passport.authenticate('auth0', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect('http://localhost:4200/movies');
+    });
+  })(req, res, next);
+});
 
   app.get('/checkAuth', (req, res, next) => {
     if(req.isAuthenticated()){
@@ -53,11 +64,21 @@ app.get('/callback',
       res.send('not authorized')
     }
   }, (req, res) => {
-    res.send(req.user);
+    res.status(200).json(req.user);
+  })
+
+  app.get('/hello',(req, res, next) => {
+    if(req.isAuthenticated()){
+      next();
+    } else {
+      res.send('not authorized')
+    }
+  }, (req, res)=> {
+    res.send(req.session);
   })
 
 // app.use('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+//   res.sendFile(path.join(__dirname, './client/dist/index.html'));
 // })
 // app.get('/', function(req, res) {
 //   res.sendFile(path.join(__dirname, '../client/src/index.html'));

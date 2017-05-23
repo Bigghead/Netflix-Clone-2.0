@@ -1,3 +1,4 @@
+import { AuthService } from './../../Services/authentication.service';
 import { Http } from '@angular/http';
 import { MovieDataService } from '../../Services/moviedata.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private movieData: MovieDataService, private http: Http) { }
+  constructor(private movieData: MovieDataService, 
+              private http: Http, 
+              private authService: AuthService) { }
 
   ngOnInit() {
 

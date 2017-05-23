@@ -3,9 +3,10 @@
       <a href="#" class="brand-logo">NoobFlix</a>
       <ul id="nav-mobile" class="right ">
         <!--<button (click)='logIn()'>Log In</button>-->
-        <li><a routerLink='/movies'>Register</a></li>
-        <li><a routerLink='/hello'>Log In</a></li>
-        <li><a href='http://localhost:3000/login'>Register</a></li>
+        <li><a routerLink='/hello'>hello</a></li>
+        <li *ngIf='!authService.isAuthenticated()'><a (click)='authService.login()'>Register/Log In</a></li>
+        <li *ngIf='authService.isAuthenticated()'><a (click)='authService.logout()'>Log Out</a></li>
+        
         
       </ul>
     </div>
