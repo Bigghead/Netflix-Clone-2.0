@@ -10,12 +10,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './partials/header/header.component';
 import { MovieListComponent } from './movies/movie-list/movie-list.component';
 import { MovieRowComponent } from './movies/movie-row/movie-row.component';
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 const appRoutes: Routes = [
  
     { path : '', redirectTo: '/movies', pathMatch: 'full'},
     { path : 'movies', component: MovieListComponent}, 
     { path : 'hello', component: HeaderComponent}, 
+    { path : 'callback', component: AuthCallbackComponent}, 
+    
     
     
 
@@ -26,7 +29,8 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     MovieListComponent,
-    MovieRowComponent
+    MovieRowComponent,
+    AuthCallbackComponent
   ],
   imports: [
     BrowserModule,
