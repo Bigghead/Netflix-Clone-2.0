@@ -14,8 +14,14 @@ export class HeaderComponent implements OnInit {
               private http: Http, 
               private authService: AuthService) { }
 
+  user = false;
+
   ngOnInit() {
 
+    this.authService.isUser
+        .subscribe(
+          (res) => this.user = res
+        )
   }
 
   logIn(){

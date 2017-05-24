@@ -2,6 +2,7 @@ const express = require('express'),
       path    = require('path'), 
       favicon = require('serve-favicon'), 
       logger  = require('morgan'), 
+      serveStatic = require('serve-static'),
       cookieParser = require('cookie-parser'), 
       bodyParser = require('body-parser'), 
       passport = require('passport'), 
@@ -19,24 +20,18 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(serveStatic(path.join(__dirname, './client/dist')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, './client/dist')));
-
-  app.use(function(req, res, next) {
-        res.header('Access-Control-Allow-Credentials', true);
-        res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-        res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-        if ('OPTIONS' == req.method) {
-            res.send(200);
-        } else {
-            next();
-        }
-    });
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
+  next();
+});
 
 app.use(passportConfig);
 
@@ -52,7 +47,7 @@ app.get('/callback', function(req, res, next) {
     if (!user) { return res.redirect('/'); }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.redirect('http://localhost:4200/movies');
+      return res.redirect('/movies');
     });
   })(req, res, next);
 });
@@ -77,9 +72,9 @@ app.get('/callback', function(req, res, next) {
     res.send(req.session);
   })
 
-// app.use('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, './client/dist/index.html'));
-// })
+app.use('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/dist/index.html'));
+})
 // app.get('/', function(req, res) {
 //   res.sendFile(path.join(__dirname, '../client/src/index.html'));
 // });
