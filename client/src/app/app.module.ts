@@ -12,11 +12,13 @@ import { HeaderComponent } from './partials/header/header.component';
 import { MovieListComponent } from './movies/movie-list/movie-list.component';
 import { MovieRowComponent } from './movies/movie-row/movie-row.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import { SingleMovieComponent } from './movies/single-movie/single-movie.component';
 
 const appRoutes: Routes = [
  
     { path : '', redirectTo: '/movies', pathMatch: 'full'},
     { path : 'movies', component: MovieListComponent}, 
+    { path : 'movies/:id', component : SingleMovieComponent},
     { path : 'hello', component: HeaderComponent}, 
     { path : 'callback', component: AuthCallbackComponent}, 
     
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     MovieListComponent,
     MovieRowComponent,
-    AuthCallbackComponent
+    AuthCallbackComponent,
+    SingleMovieComponent
   ],
   imports: [
     BrowserModule,

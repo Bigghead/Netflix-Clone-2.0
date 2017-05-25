@@ -69,7 +69,7 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
           const newArr = this.movieData.allMovies.concat(this.movies);
           this.movieData.allMovies = newArr;
 
-          setTimeout(this.loadFlickity, 500);
+          setTimeout(this.loadFlickity, 300);
         }
         )
 

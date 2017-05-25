@@ -2,11 +2,22 @@
 <h3>{{ movieObj.heading }}</h3>
 
 <div class="row">
-    <div class="col s12">
-      <div class="carousel" >
-          
-          <img class='responsive-img carousel-cell'src="{{ imageUrl + movie.poster_path  }}" *ngFor="let movie of movies">
-      </div>
+  <div class="col s12">
+    <div class="carousel">
+
+      <!--<img *ngFor="let movie of movies; let last = last"
+               #allImages
+               class='responsive-img carousel-cell'
+               src="{{ imageUrl + movie.poster_path  }}">-->
+      <a *ngFor="let movie of movies; let last = last" class='carousel-cell' [routerLink]="['/movies', movie.id]">
+        <img *ngIf="movie.poster_path"
+             class='responsive-img' 
+             src="{{ imageUrl + movie.poster_path  }}">
+
+        <img *ngIf="!movie.poster_path"
+             class='responsive-img' 
+             src="http://lorempixel.com/283/400">
+      </a>
     </div>
   </div>
-
+</div>
