@@ -1,5 +1,17 @@
-<div *ngIf='movie' class="col s6 offset-s6">
-    <img src="{{ imageUrl + movie.poster_path  }}" alt="">
-</div>
+<div class="container">
+  <div *ngIf='movie'>
+    <div class="row">
+      <div class="col m6 s12">
+        <img class='responsive-img' src="{{ imageUrl + movie.poster_path  }}" alt="">
+      </div>
+      <div class="col m6 s12">
+        <h2><strong>{{ movie.title }}</strong></h2>
+        <h5><strong>Overview: </strong></h5>
+        <p>{{ movie.overview }}</p>
+      </div>
+    </div>
+    
+  </div>
 
-<h2 class='center-align'*ngIf=!movie>No Movie Data Available</h2>
+  <h2 class='center-align' *ngIf=!movie>No Movie Data Available</h2>
+</div>
