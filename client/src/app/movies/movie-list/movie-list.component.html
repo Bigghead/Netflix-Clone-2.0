@@ -1,4 +1,5 @@
-<button (click)='checkAuth()'>Check Auth</button>
-<app-movie-row *ngFor="let movieRow of movieListComponent" 
+
+<app-movie-row *ngFor="let movieRow of movieListComponent; let i = index" 
                [movieObj]="movieRow"
+               [index]="i.toString()"
 ></app-movie-row>

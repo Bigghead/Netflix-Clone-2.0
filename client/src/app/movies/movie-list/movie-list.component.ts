@@ -1,7 +1,7 @@
 import { Http } from '@angular/http';
 import { MovieDataService } from './../../Services/moviedata.service';
 import { Keys } from './../../../keys';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class MovieListComponent implements OnInit, AfterViewInit {
 
   constructor(private movieData: MovieDataService,
     private currentRoute: ActivatedRoute,
@@ -39,6 +39,10 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  ngAfterViewInit(){
+      
   }
 
   checkAuth(){

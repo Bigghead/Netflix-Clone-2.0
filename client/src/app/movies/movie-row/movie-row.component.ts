@@ -2,7 +2,9 @@
 import { Keys } from '../../../keys';
 import { MovieDataService } from '../../Services/moviedata.service';
 import { Http } from '@angular/http';
-import { Component, OnInit, Injectable, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Injectable, Input, AfterViewInit } from '@angular/core';
+import * as Flickity from 'flickity';
+
 
 declare var $: any;
 @Component({
@@ -12,11 +14,10 @@ declare var $: any;
 })
 
 @Injectable()
-export class MovieRowComponent implements OnInit {
+export class MovieRowComponent implements OnInit, AfterViewInit {
 
-  constructor(private http: Http, 
-              private movieData: MovieDataService, 
-              private el: ElementRef) {
+  constructor(private http: Http,
+    private movieData: MovieDataService) {
 
   }
 
@@ -26,14 +27,18 @@ export class MovieRowComponent implements OnInit {
     url: string,
     fetchMethodName: any
   }
+  @Input() index: string;
 
   movies: any[];
   imageUrl = 'https://image.tmdb.org/t/p/w640';
 
-  
+
   ngOnInit() {
 
     this.fetchData();
+  }
+
+  ngAfterViewInit() {
   }
 
 
@@ -41,7 +46,7 @@ export class MovieRowComponent implements OnInit {
     let type = this.movieObj.type;
     let dataFetched = this.movieData[type];
     console.log(this.movieData.allMovies);
-    
+
     // First time load, get data from an outside api
     if (!dataFetched) {
       this.http.get(this.movieObj.url)
@@ -63,21 +68,25 @@ export class MovieRowComponent implements OnInit {
 
           const newArr = this.movieData.allMovies.concat(this.movies);
           this.movieData.allMovies = newArr;
-          this.movieData.allDataFetched.next(true);
 
-          setTimeout(this.loadFlickity, 400);
-          }
+          setTimeout(this.loadFlickity, 500);
+        }
         )
 
     } else {
 
-      this.movies = this.movieObj.fetchMethodName;
-      setTimeout(this.loadFlickity);
+      return new Promise( (resolve, reject) => {
+        this.movies = this.movieObj.fetchMethodName;
+        resolve();
+      }).then(
+        () => this.loadFlickity()
+      )
 
     }
   }
 
   loadFlickity() {
+
     $('.carousel').flickity({
       // contain: true,
       freeScroll: true,
@@ -85,9 +94,5 @@ export class MovieRowComponent implements OnInit {
       initialIndex: 0
     });
   }
-
-  // logIn(){
-  //   this.authService.login();
-  // }
 
 }
