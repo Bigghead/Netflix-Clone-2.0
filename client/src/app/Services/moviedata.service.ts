@@ -31,7 +31,9 @@ export class MovieDataService {
         this[type] = true;
     }
 
-    
+    getOneMovie(movieId: number){
+        return this.allMovies.filter(movie => movie.id === movieId)
+    }
 
 
 

@@ -1,3 +1,4 @@
+import { CanActivateSingle } from './Services/singleMovieGuard.service';
 import { AuthService } from './Services/authentication.service';
 
 import { MovieDataService } from './Services/moviedata.service';
@@ -42,7 +43,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [MovieDataService, AuthService],
+  providers: [MovieDataService, AuthService, CanActivateSingle],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
