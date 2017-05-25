@@ -1,13 +1,13 @@
 <nav class=' '>
   <div class="nav-wrapper black lighten-2 red-text">
-    <a href="#" class="brand-logo">NoobFlix</a>
+    <a href="#" class="brand-logo left">NoobFlix</a>
     <ul id="nav-mobile" class="right ">
       <!--<button (click)='logIn()'>Log In</button>-->
       <li><a routerLink='/hello'>hello</a></li>
       <li *ngIf='!user; else userIsOn'><a href='/login'>Register/ Log In</a></li>
 
       <ng-template #userIsOn>
-        <li ><a >{{ authService.user }}</a></li>        
+        <li ><a >{{ authService.user.userName }}</a></li>        
         <li ><a (click)='authService.logout()'>Log Out</a></li>
       </ng-template>
 

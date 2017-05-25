@@ -6,15 +6,21 @@ const express = require('express'),
       cookieParser = require('cookie-parser'), 
       cors    = require('cors');
       bodyParser = require('body-parser'), 
+      mongoose = require('mongoose'),
       
       passport = require('passport'), 
-      passportConfig = require('./server/passportConfig.js')
+      passportConfig = require('./server/passportConfig.js'),
+      authKeys = require('./server/authKeys.js');
 
 
 const index = require('./routes/index'),
       users = require('./routes/users');
 
 const app = express();
+
+// ===== Mongoose Setup =====
+mongoose.Promise = global.Promise;
+mongoose.connect(`mongodb://${authKeys.mlabUser}:${authKeys.mlabPass}@ds151941.mlab.com:51941/netflix-clone`);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
