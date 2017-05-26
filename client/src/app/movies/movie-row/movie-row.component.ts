@@ -6,7 +6,7 @@ import { Component, OnInit, Injectable, Input, AfterViewInit } from '@angular/co
 import * as Flickity from 'flickity';
 
 
-declare var $: any;
+// declare var $: any;
 @Component({
   selector: 'app-movie-row',
   templateUrl: './movie-row.component.html',
@@ -27,7 +27,7 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
     url: string,
     fetchMethodName: any
   }
-  @Input() index: string;
+  @Input() index: number;
 
   movies: any[];
   imageUrl = 'https://image.tmdb.org/t/p/w640';
@@ -45,7 +45,6 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
   fetchData() {
     let type = this.movieObj.type;
     let dataFetched = this.movieData[type];
-    console.log(this.movieData.allMovies);
 
     // First time load, get data from an outside api
     if (!dataFetched) {
@@ -69,26 +68,29 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
           const newArr = this.movieData.allMovies.concat(this.movies);
           this.movieData.allMovies = newArr;
 
-          setTimeout(this.loadFlickity, 300);
+          setTimeout(() => {
+            this.loadFlickity(this.index)
+          }, 0);
         }
         )
 
     } else {
 
-      return new Promise( (resolve, reject) => {
+      return new Promise((resolve, reject) => {
         this.movies = this.movieObj.fetchMethodName;
         resolve();
       }).then(
-        () => this.loadFlickity()
-      )
+        () => this.loadFlickity(this.index)
+        )
 
     }
   }
 
-  loadFlickity() {
-
-    $('.carousel').flickity({
-      // contain: true,
+  loadFlickity(index: number) {
+    var el = document.querySelectorAll('.carousel')[index];
+    // var elem = el[this.index];
+    var flkty = new Flickity(el, {
+      // options
       freeScroll: true,
       wrapAround: true,
       initialIndex: 0
