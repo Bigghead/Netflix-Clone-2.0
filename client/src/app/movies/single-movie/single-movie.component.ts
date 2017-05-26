@@ -1,3 +1,4 @@
+import { AuthService } from './../../Services/authentication.service';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDataService } from './../../Services/moviedata.service';
@@ -14,19 +15,27 @@ export class SingleMovieComponent implements OnInit {
   constructor(private movieData: MovieDataService,
               private currentRoute: ActivatedRoute, 
               private router: Router, 
-              private http: Http) { }
+              private http: Http, 
+              private authService: AuthService) { }
 
   movie;
   imageUrl = 'https://image.tmdb.org/t/p/w640';
+  id: number;
+  user;
 
 
 
   ngOnInit() {
 
+     this.authService.isUser
+        .subscribe(
+          (res) => this.user = res
+        )
 
     this.currentRoute.params.subscribe(
       (params) => {
         const id = +params['id'];
+        this.id = id;
 
         if(this.movieData.allMovies.length === 0){
           this.fetchMovieWithAjax(id);
@@ -43,5 +52,14 @@ export class SingleMovieComponent implements OnInit {
              .map(res => res.json())
              .subscribe( res => this.movie = res)
   }
+
+  // userHasLiked(){
+  //   const user = this.authService.user;
+  //   if(user && user.userList.indexOf(this.id) === -1){
+  //     return true;
+  //   } 
+
+  //   return false;
+  // }
 
 }

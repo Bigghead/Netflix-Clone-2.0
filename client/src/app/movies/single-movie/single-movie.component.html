@@ -8,9 +8,37 @@
         <h2><strong>{{ movie.title }}</strong></h2>
         <h5><strong>Overview: </strong></h5>
         <p>{{ movie.overview }}</p>
+        <br>
+        <br>
+
+        <div class="row valign-wrapper">
+
+          <ng-container *ngIf='authService.isAuthenticated()'>
+            <div class="col s3">
+              <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_up</i></a>
+            </div>
+            <div class="col s6">
+              <h5>Add To My List</h5>
+            </div>
+          </ng-container>
+          
+
+          <!--change to !isAuth &&, movie id isnt in array-->
+          <ng-container *ngIf='!authService.isAuthenticated()'>
+             <div class="col s3">
+              <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></a>
+            </div>
+            <div class="col s6">
+              <h5>Remove From My List</h5>
+            </div>
+          </ng-container>
+          <div class="col s3"></div>
+        </div>
+
+
       </div>
     </div>
-    
+
   </div>
 
   <h2 class='center-align' *ngIf=!movie>No Movie Data Available</h2>
