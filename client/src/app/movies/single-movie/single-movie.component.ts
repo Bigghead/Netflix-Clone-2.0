@@ -21,16 +21,10 @@ export class SingleMovieComponent implements OnInit {
   movie;
   imageUrl = 'https://image.tmdb.org/t/p/w640';
   id: number;
-  user;
 
 
 
   ngOnInit() {
-
-     this.authService.isUser
-        .subscribe(
-          (res) => this.user = res
-        )
 
     this.currentRoute.params.subscribe(
       (params) => {
@@ -54,7 +48,7 @@ export class SingleMovieComponent implements OnInit {
   }
 
   // userHasLiked(){
-  //   const user = this.authService.user;
+  //   const user = this.authService.isAuthenticated();
   //   if(user && user.userList.indexOf(this.id) === -1){
   //     return true;
   //   } 

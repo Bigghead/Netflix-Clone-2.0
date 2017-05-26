@@ -23,7 +23,6 @@ export class AppComponent implements OnInit{
         .catch(err => Observable.throw(err))
         .subscribe(
           (res) => {
-            console.log(res);
             this.authService.user = res;
             this.authService.isUser.next(true);
           })
