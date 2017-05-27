@@ -71,15 +71,7 @@ app.get('/callback', function(req, res, next) {
     res.status(200).json(req.user);
   })
 
-  app.get('/hello',(req, res, next) => {
-    if(req.isAuthenticated()){
-      next();
-    } else {
-      res.send('not authorized')
-    }
-  }, (req, res)=> {
-    res.send(req.session);
-  })
+ 
 
 app.use('/', (req, res) => {
   res.sendFile(path.join(__dirname, './client/dist/index.html'));

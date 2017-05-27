@@ -63,33 +63,30 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
         .subscribe(
         (res) => {
           this.movies = res.results;
-          this.movieData[this.movieObj.type] = true;
+          this.movieData[this.movieObj.type] = true;        
 
           const newArr = this.movieData.allMovies.concat(this.movies);
           this.movieData.allMovies = newArr;
 
           setTimeout(() => {
             this.loadFlickity(this.index)
-          }, 0);
-        }
+            }, 0);
+          }
         )
 
     } else {
 
-      return new Promise((resolve, reject) => {
         this.movies = this.movieObj.fetchMethodName;
-        resolve();
-      }).then(
-        () => this.loadFlickity(this.index)
-        )
-
+        setTimeout(() => this.loadFlickity(this.index));
     }
   }
 
+  
   loadFlickity(index: number) {
-    var el = document.querySelectorAll('.carousel')[index];
+
+    const el = document.querySelectorAll('.carousel')[index];
     // var elem = el[this.index];
-    var flkty = new Flickity(el, {
+    const flkty = new Flickity(el, {
       // options
       freeScroll: true,
       wrapAround: true,

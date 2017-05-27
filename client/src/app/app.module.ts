@@ -14,6 +14,7 @@ import { MovieListComponent } from './movies/movie-list/movie-list.component';
 import { MovieRowComponent } from './movies/movie-row/movie-row.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { SingleMovieComponent } from './movies/single-movie/single-movie.component';
+import { UserFavoritesComponent } from './movies/user-favorites/user-favorites.component';
 
 const appRoutes: Routes = [
  
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     MovieListComponent,
     MovieRowComponent,
     AuthCallbackComponent,
-    SingleMovieComponent
+    SingleMovieComponent,
+    UserFavoritesComponent
   ],
   imports: [
     BrowserModule,

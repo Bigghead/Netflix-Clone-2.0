@@ -13,15 +13,15 @@ import { Keys } from '../../../keys';
 export class SingleMovieComponent implements OnInit {
 
   constructor(private movieData: MovieDataService,
-              private currentRoute: ActivatedRoute, 
-              private router: Router, 
-              private http: Http, 
-              private authService: AuthService) { }
+    private currentRoute: ActivatedRoute,
+    private router: Router,
+    private http: Http,
+    private authService: AuthService) { }
+
 
   movie;
   imageUrl = 'https://image.tmdb.org/t/p/w640';
   id: number;
-
 
 
   ngOnInit() {
@@ -31,20 +31,22 @@ export class SingleMovieComponent implements OnInit {
         const id = +params['id'];
         this.id = id;
 
-        if(this.movieData.allMovies.length === 0){
+        if (this.movieData.allMovies.length === 0) {
           this.fetchMovieWithAjax(id);
+          
         } else {
-        this.movie = this.movieData.getOneMovie(id)[0];
-        console.log(this.movie);
+          this.movie = this.movieData.getOneMovie(id)[0];
+          console.log(this.movie);
         }
       }
     )
   }
 
-  fetchMovieWithAjax(id: number){
+  fetchMovieWithAjax(id: number) {
+
     this.http.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${Keys.omdbKey}`)
-             .map(res => res.json())
-             .subscribe( res => this.movie = res)
+      .map(res => res.json())
+      .subscribe(res => this.movie = res)
   }
 
   // userHasLiked(){
