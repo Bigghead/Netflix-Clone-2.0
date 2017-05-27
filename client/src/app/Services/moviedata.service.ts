@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+import { AuthService } from './authentication.service';
 import { Subject } from 'rxjs/Rx';
 import { Keys } from './../../keys';
 import { OnInit, Injectable } from '@angular/core';
@@ -7,7 +9,8 @@ import { Http } from '@angular/http';
 
 
 export class MovieDataService {
-    constructor() {
+    constructor(private authService: AuthService,
+        private http: Http) {
 
     }
 
@@ -26,15 +29,31 @@ export class MovieDataService {
         return this.allMovies.filter(movie => movie.type == 'Popular');
     }
 
+    getTopRatedShows(){
+        return this.allMovies.filter(movie => movie.type === 'TopShow')
+    }
+
+    getPopularShows(){
+        return this.allMovies.filter(movie => movie.type === 'PopularShow')
+    }
+
     hasLoaded(type: string) {
         alert('from service: ' + this[type])
         this[type] = true;
     }
 
-    getOneMovie(movieId: number){
+    getOneMovie(movieId: number) {
         return this.allMovies.filter(movie => movie.id === movieId)
     }
 
-
+    addOneToFavorite(userId, movie) {
+        this.http.post(`http://localhost:3000/${userId}/movie`, movie)
+            .catch(err => Observable.throw(err))
+            .subscribe(
+                (res) => {
+                this.authService.user.userList.push(movie);
+                }
+            )
+    }
 
 }

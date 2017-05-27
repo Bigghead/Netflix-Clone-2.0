@@ -59,8 +59,8 @@ export class SingleMovieComponent implements OnInit {
   // }
 
   addToList(){
-    this.http.post('http://localhost:3000/12/12', this.movie)
-              .subscribe((res) => console.log(res))
+    const userId = this.authService.user._id
+    this.movieData.addOneToFavorite( userId, this.movie);
   }
 
 }

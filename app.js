@@ -73,18 +73,18 @@ app.get('/callback', function(req, res, next) {
 
  app.post('/:userId/movies', ( req, res ) => {
    console.log(req.body);
-  // User.findById(req.params.userId)
-  //     .exec()
-  //     .then(user => {
-  //       user.userList.push(req.body);
-  //       return user.save();
-  //     })
-  //     .then( () => {
-  //       res.status(200).send('Success');
-  //     })
-  //     .catch(err => {
-  //       res.send(err);
-  //     })
+  User.findById(req.params.userId)
+      .exec()
+      .then(user => {
+        user.userList.push(req.body);
+        return user.save();
+      })
+      .then( () => {
+        res.status(200).send('Success');
+      })
+      .catch(err => {
+        res.send(err);
+      })
  });
 
 app.use('/', (req, res) => {
