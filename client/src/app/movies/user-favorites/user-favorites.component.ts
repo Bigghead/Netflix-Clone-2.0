@@ -1,3 +1,4 @@
+import * as Flickity from 'flickity';
 import { AuthService } from './../../Services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -15,6 +16,20 @@ export class UserFavoritesComponent implements OnInit {
 
   ngOnInit() {
     this.userFavorites = this.authService.user.userList;
+    setTimeout(this.loadFlickity);
+  }
+
+  loadFlickity() {
+
+    const el = document.querySelector('.carousels');
+    // var elem = el[this.index];
+    const flkty = new Flickity(el, {
+      // options
+      freeScroll: true,
+      // wrapAround: true,
+      cellAlign: 'left',
+      initialIndex: 0
+    });
   }
 
 }

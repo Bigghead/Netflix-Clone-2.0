@@ -63,25 +63,25 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
         .subscribe(
         (res) => {
           this.movies = res.results;
-          this.movieData[this.movieObj.type] = true;        
+          this.movieData[this.movieObj.type] = true;
 
           const newArr = this.movieData.allMovies.concat(this.movies);
           this.movieData.allMovies = newArr;
 
           setTimeout(() => {
             this.loadFlickity(this.index)
-            }, 0);
-          }
+          }, 0);
+        }
         )
 
     } else {
 
-        this.movies = this.movieObj.fetchMethodName;
-        setTimeout(() => this.loadFlickity(this.index));
+      this.movies = this.movieObj.fetchMethodName;
+      setTimeout(() => this.loadFlickity(this.index));
     }
   }
 
-  
+
   loadFlickity(index: number) {
 
     const el = document.querySelectorAll('.carousel')[index];
@@ -90,6 +90,7 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
       // options
       freeScroll: true,
       wrapAround: true,
+      cellAlign: 'left',
       initialIndex: 0
     });
   }
