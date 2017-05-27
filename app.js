@@ -90,6 +90,11 @@ app.get('/callback', function(req, res, next) {
       })
  });
 
+ app.get('/logout', (req, res) => {
+   req.logout();
+   res.redirect('/movies');
+ })
+
 app.use('/', (req, res) => {
   res.sendFile(path.join(__dirname, './client/dist/index.html'));
 })

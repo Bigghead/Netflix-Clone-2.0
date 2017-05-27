@@ -24,11 +24,6 @@ export class HeaderComponent implements OnInit {
         )
   }
 
-  logIn(){
-    this.http.get('http://localhost:3000/login')
-        .subscribe(
-          (res) => console.log(res)
-        )
-  }
+  
 
 }
