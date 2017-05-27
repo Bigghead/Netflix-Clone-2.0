@@ -13,7 +13,7 @@
 
         <div class="row valign-wrapper">
 
-          <ng-container *ngIf='authService.isAuthenticated()'>
+          <ng-container *ngIf='authService.isAuthenticated() && !userLiked'>
             <div class="col s3">
               <a class="btn-floating btn-large waves-effect waves-light red"
                   (click)="addToList()">
@@ -27,7 +27,7 @@
           
 
           <!--change to !isAuth &&, movie id isnt in array-->
-          <ng-container *ngIf='!authService.isAuthenticated()'>
+          <ng-container *ngIf='authService.isAuthenticated() && userLiked'>
              <div class="col s3">
               <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></a>
             </div>

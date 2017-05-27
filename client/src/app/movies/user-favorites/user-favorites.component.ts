@@ -26,8 +26,7 @@ export class UserFavoritesComponent implements OnInit {
     const flkty = new Flickity(el, {
       // options
       freeScroll: true,
-      // wrapAround: true,
-      cellAlign: 'left',
+      wrapAround: true,
       initialIndex: 0
     });
   }

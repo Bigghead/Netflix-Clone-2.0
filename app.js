@@ -12,6 +12,7 @@ const express = require('express'),
       passportConfig = require('./server/passportConfig.js'),
       authKeys = require('./server/authKeys.js');
 
+const User = require('./server/models/User.js');
 
 const index = require('./routes/index'),
       users = require('./routes/users');
@@ -76,10 +77,12 @@ app.get('/callback', function(req, res, next) {
   User.findById(req.params.userId)
       .exec()
       .then(user => {
+        console.log(user, 'asdfashflshfalksjh')
         user.userList.push(req.body);
         return user.save();
       })
-      .then( () => {
+      .then( (user) => {
+        console.log(user);
         res.status(200).send('Success');
       })
       .catch(err => {

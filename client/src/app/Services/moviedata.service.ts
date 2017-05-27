@@ -47,7 +47,7 @@ export class MovieDataService {
     }
 
     addOneToFavorite(userId, movie) {
-        this.http.post(`http://localhost:3000/${userId}/movie`, movie)
+        this.http.post(`http://localhost:3000/${userId}/movies`, movie)
             .catch(err => Observable.throw(err))
             .subscribe(
                 (res) => {
