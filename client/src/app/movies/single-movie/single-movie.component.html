@@ -15,7 +15,10 @@
 
           <ng-container *ngIf='authService.isAuthenticated()'>
             <div class="col s3">
-              <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_up</i></a>
+              <a class="btn-floating btn-large waves-effect waves-light red"
+                  (click)="addToList()">
+                <i class="material-icons">thumb_up</i>
+              </a>
             </div>
             <div class="col s6">
               <h5>Add To My List</h5>

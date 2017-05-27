@@ -58,4 +58,9 @@ export class SingleMovieComponent implements OnInit {
   //   return false;
   // }
 
+  addToList(){
+    this.http.post('http://localhost:3000/12/12', this.movie)
+              .subscribe((res) => console.log(res))
+  }
+
 }
