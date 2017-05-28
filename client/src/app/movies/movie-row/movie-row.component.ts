@@ -6,7 +6,6 @@ import { Component, OnInit, Injectable, Input, AfterViewInit } from '@angular/co
 import * as Flickity from 'flickity';
 
 
-// declare var $: any;
 @Component({
   selector: 'app-movie-row',
   templateUrl: './movie-row.component.html',
@@ -14,19 +13,17 @@ import * as Flickity from 'flickity';
 })
 
 @Injectable()
-export class MovieRowComponent implements OnInit, AfterViewInit {
+export class MovieRowComponent implements OnInit {
 
   constructor(private http: Http,
-    private movieData: MovieDataService) {
-
-  }
+              private movieData: MovieDataService) {}
 
   @Input() movieObj: {
-    heading: string,
-    type: string,
-    url: string,
-    fetchMethodName: any
-  }
+             heading: string,
+             type: string,
+             url: string,
+             fetchMethodName: any
+          }
   @Input() index: number;
 
   movies: any[];
@@ -35,19 +32,23 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.fetchData();
-  }
+    let type = this.movieObj.type;
+    let dataFetched = this.movieData[type];
 
-  ngAfterViewInit() {
+    if(!dataFetched){
+       this.fetchData();
+
+    } else {
+
+      this.movies = this.movieObj.fetchMethodName;
+      setTimeout( () => this.loadFlickity(this.index) );
+    }
   }
 
 
   fetchData() {
-    let type = this.movieObj.type;
-    let dataFetched = this.movieData[type];
 
     // First time load, get data from an outside api
-    if (!dataFetched) {
       this.http.get(this.movieObj.url)
         .map(res => res.json())
         .map(res => {
@@ -55,13 +56,11 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
           res.results.forEach(movie => {
             if (!movie.type) {
               movie.type = this.movieObj.type;
-
             }
           })
           return res;
         })
-        .subscribe(
-        (res) => {
+        .subscribe( res => {
 
           this.movies = res.results;
           this.movieData[this.movieObj.type] = true;
@@ -69,16 +68,10 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
           const newArr = this.movieData.allMovies.concat(this.movies);
           this.movieData.allMovies = newArr;
 
-            setTimeout(() => this.loadFlickity(this.index));
+          setTimeout( () => this.loadFlickity(this.index) );
           }
         )
-
-    } else {
-      
-      this.movies = this.movieObj.fetchMethodName;
-      setTimeout(() => this.loadFlickity(this.index));
-    }
-  }
+}
 
 
   loadFlickity(index: number) {
@@ -92,5 +85,4 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
       initialIndex: 0
     });
   }
-
 }
