@@ -1,19 +1,17 @@
-const express = require('express'),
+const User    = require('../models/User.js'),
+      express = require('express'),
       Router  = express.Router();
 
 
 Router.post('/:userId/movies', (req, res) => {
-    console.log(req.body);
     User.findById(req.params.userId)
         .exec()
         .then(user => {
-            console.log(user, 'asdfashflshfalksjh')
             user.userList.push(req.body);
             return user.save();
         })
         .then((user) => {
-            console.log(user);
-            res.status(200).send('Success');
+            res.status(200).json(user.userList);
         })
         .catch(err => {
             res.send(err);
@@ -23,7 +21,6 @@ Router.post('/:userId/movies', (req, res) => {
 
 Router.patch('/:userId/movies', (req, res) => {
 
-    console.log(req.body);
     const movieId = req.body.id
 
     User.findById(req.params.userId)
@@ -39,8 +36,7 @@ Router.patch('/:userId/movies', (req, res) => {
             return user.save();
         })
         .then(user => {
-            console.log(user);
-            res.status(200).send('Success');
+            res.status(200).json(user.userList);
         })
         .catch(err => res.send(err))
 })

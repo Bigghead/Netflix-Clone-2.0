@@ -90,7 +90,6 @@ export class MovieRowComponent implements OnInit, AfterViewInit {
       // options
       freeScroll: true,
       wrapAround: true,
-      cellAlign: 'left',
       initialIndex: 0
     });
   }

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './authentication.service';
 import { Subject } from 'rxjs/Rx';
@@ -9,13 +10,11 @@ import { Http } from '@angular/http';
 
 
 export class MovieDataService {
+
     constructor(private authService: AuthService,
-                private http: Http) {
+                private http: Http, 
+                private router: Router) {}
 
-    }
-
-    Latest = false;
-    Popular = false;
     allMovies: any[] = [];
     allDataFetched = new Subject<any>();
 
@@ -25,22 +24,21 @@ export class MovieDataService {
         return this.allMovies.filter(movie => movie.type == 'Latest');
     }
 
+
     getPopular() {
         return this.allMovies.filter(movie => movie.type == 'Popular');
     }
+
 
     getTopRatedShows() {
         return this.allMovies.filter(movie => movie.type === 'TopShow')
     }
 
+
     getPopularShows() {
         return this.allMovies.filter(movie => movie.type === 'PopularShow')
     }
 
-    hasLoaded(type: string) {
-        alert('from service: ' + this[type])
-        this[type] = true;
-    }
 
     getOneMovie(movieId: number) {
         return this.allMovies.filter(movie => movie.id === movieId)
@@ -58,18 +56,15 @@ export class MovieDataService {
             )
     }
 
+
     removeOneFromFavorite(userId, movie) {
 
         this.http.patch(`http://localhost:3000/${userId}/movies`, movie)
+                 .map(res => res.json())
                  .catch(err => Observable.throw(err))
                  .subscribe(
                     (res) => {
-                        const userFavs = this.authService.user.userList;
-                        userFavs.forEach(e => {
-                             if (e.id === movie.id) {
-                             userFavs.splice(userFavs.indexOf(e), 1);
-                         }
-                     });
+                        this.authService.user.userList = res;
                    }
                  )
         }

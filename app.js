@@ -17,10 +17,10 @@ const express = require('express'),
 const User = require('./server/models/User.js');
 
 // ===== Routes =====
-const index = require('./routes/index'),
-      users = require('./routes/users');
-      authRoute = require('./routes/authentication.js');
-      userHandler = require('./routes/userHandler.js');
+const index = require('./server/routes/index'),
+      users = require('./server/routes/users');
+      authRoute = require('./server/routes/authentication.js');
+      userHandler = require('./server/routes/userHandler.js');
 
 const app = express();
 
@@ -53,7 +53,7 @@ app.use('/', (req, res) => {
   res.sendFile(path.join(__dirname, './client/dist/index.html'));
 })
 // app.get('/', function(req, res) {
-//   res.sendFile(path.join(__dirname, '../client/src/index.html'));
+//   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 // });
 
 app.listen(3000, () => console.log('listening on 3000'));
