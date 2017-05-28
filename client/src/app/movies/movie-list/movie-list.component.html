@@ -1,7 +1,10 @@
 <!--<div class="static-banner" [ngStyle]="{'background' : 'url(' + imageUrl +  ')'}"></div>-->
 <!--<div>{{latestMovie.poster_path}}</div>-->
 <app-user-favorites *ngIf='authService.isAuthenticated()'></app-user-favorites>
+
 <app-movie-row *ngFor="let movieRow of movieListComponent; let i = index" 
                [movieObj]="movieRow"
                [index]="i"
-></app-movie-row>
+               ></app-movie-row>
+
+

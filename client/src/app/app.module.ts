@@ -24,9 +24,6 @@ const appRoutes: Routes = [
     { path : 'hello', component: HeaderComponent}, 
     { path : 'callback', component: AuthCallbackComponent}, 
     
-    
-    
-
 ]
 
 @NgModule({

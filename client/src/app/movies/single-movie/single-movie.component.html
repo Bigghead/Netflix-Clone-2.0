@@ -39,6 +39,11 @@
           <div class="col s3"></div>
         </div>
 
+        <br>
+        <br>
+        
+        <h5 *ngIf="!authService.isAuthenticated()">Log In To Add To Your List</h5>
+
 
       </div>
     </div>

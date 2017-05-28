@@ -17,6 +17,10 @@ export class MovieDataService {
 
     allMovies: any[] = [];
     allDataFetched = new Subject<any>();
+    TopShow :boolean = false;
+    PopularShow :boolean = false;
+    Popular :boolean = false;
+    Latest :boolean = false;
 
 
 
