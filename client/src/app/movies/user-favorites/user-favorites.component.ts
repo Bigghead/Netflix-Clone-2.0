@@ -27,7 +27,8 @@ export class UserFavoritesComponent implements OnInit {
       // options
       freeScroll: true,
       wrapAround: true,
-      initialIndex: 0
+      initialIndex: 0,
+      cellAlign: 'left'
     });
   }
 

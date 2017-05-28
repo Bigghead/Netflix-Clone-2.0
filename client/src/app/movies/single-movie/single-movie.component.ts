@@ -76,4 +76,10 @@ export class SingleMovieComponent implements OnInit {
     this.movieData.addOneToFavorite( userId, this.movie);
   }
 
+  removeFromList(){
+
+    this.userLiked = !this.userLiked;
+    this.movieData.removeOneFromFavorite(this.movie);
+  }
+
 }

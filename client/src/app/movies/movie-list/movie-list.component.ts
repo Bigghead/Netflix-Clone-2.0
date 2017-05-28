@@ -13,9 +13,13 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieListComponent implements OnInit, AfterViewInit {
 
   constructor(private movieData: MovieDataService,
-              private currentRoute: ActivatedRoute,
-              private http: Http, 
-              private authService: AuthService) { }
+    private currentRoute: ActivatedRoute,
+    private http: Http,
+    private authService: AuthService) { }
+
+  latestMovie;
+  imageUrl = 'https://image.tmdb.org/t/p/w640';
+
 
   movieListComponent = [
     {
@@ -44,24 +48,34 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     },
 
 
-      // url: `https://api.themoviedb.org/3/movie/popular?api_key=${Keys.omdbKey}&language=en-US&page=1`,
-    
+    // url: `https://api.themoviedb.org/3/movie/popular?api_key=${Keys.omdbKey}&language=en-US&page=1`,
+
 
   ]
 
   ngOnInit() {
-    
+
   }
 
-  ngAfterViewInit(){
-      
+  ngAfterViewInit() {
+
+    this.getNewest();
   }
 
-  checkAuth(){
+  getNewest() {
+
+    this.http.get(`https://api.themoviedb.org/3/movie/latest?api_key=${Keys.omdbKey}&language=en-US`)
+      .map(res => res.json())
+      .subscribe(
+      (res) => this.latestMovie = res
+      )
+  }
+
+  checkAuth() {
     this.http.get('http://localhost:3000/checkAuth')
-            .subscribe(
-            (res) => console.log(res)
-            )
+      .subscribe(
+      (res) => console.log(res)
+      )
   }
 
 }

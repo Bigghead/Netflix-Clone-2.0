@@ -56,4 +56,13 @@ export class MovieDataService {
             )
     }
 
+    removeOneFromFavorite(movie){
+        const userFavs = this.authService.user.userList;
+        userFavs.forEach(e => {
+            if(e.id === movie.id){
+                userFavs.splice(userFavs.indexOf(e), 1);
+            }
+        });
+    }
+
 }
