@@ -10,7 +10,7 @@ import { Http } from '@angular/http';
 
 export class MovieDataService {
     constructor(private authService: AuthService,
-        private http: Http) {
+                private http: Http) {
 
     }
 
@@ -29,11 +29,11 @@ export class MovieDataService {
         return this.allMovies.filter(movie => movie.type == 'Popular');
     }
 
-    getTopRatedShows(){
+    getTopRatedShows() {
         return this.allMovies.filter(movie => movie.type === 'TopShow')
     }
 
-    getPopularShows(){
+    getPopularShows() {
         return this.allMovies.filter(movie => movie.type === 'PopularShow')
     }
 
@@ -46,23 +46,32 @@ export class MovieDataService {
         return this.allMovies.filter(movie => movie.id === movieId)
     }
 
+
     addOneToFavorite(userId, movie) {
+
         this.http.post(`http://localhost:3000/${userId}/movies`, movie)
-            .catch(err => Observable.throw(err))
-            .subscribe(
-                (res) => {
-                this.authService.user.userList.push(movie);
-                }
+                 .catch(err => Observable.throw(err))
+                 .subscribe(
+                     (res) => {
+                        this.authService.user.userList.push(movie);
+                 }
             )
     }
 
-    removeOneFromFavorite(movie){
-        const userFavs = this.authService.user.userList;
-        userFavs.forEach(e => {
-            if(e.id === movie.id){
-                userFavs.splice(userFavs.indexOf(e), 1);
-            }
-        });
-    }
+    removeOneFromFavorite(userId, movie) {
+
+        this.http.patch(`http://localhost:3000/${userId}/movies`, movie)
+                 .catch(err => Observable.throw(err))
+                 .subscribe(
+                    (res) => {
+                        const userFavs = this.authService.user.userList;
+                        userFavs.forEach(e => {
+                             if (e.id === movie.id) {
+                             userFavs.splice(userFavs.indexOf(e), 1);
+                         }
+                     });
+                   }
+                 )
+        }
 
 }

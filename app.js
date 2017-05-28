@@ -90,6 +90,32 @@ app.get('/callback', function(req, res, next) {
       })
  });
 
+ app.patch('/:userId/movies', (req, res) => {
+
+   console.log(req.body);
+   const movieId = req.body.id
+
+   User.findById(req.params.userId)
+       .exec()
+       .then(user => {
+         const userFavs = user.userList;
+
+         userFavs.forEach(e => {
+           if(e.id === movieId) {
+             userFavs.splice(userFavs.indexOf(e), 1);
+           }
+         })
+          return user.save();
+       })
+       .then(user => {
+         console.log(user);
+         res.status(200).send('Success');
+       })
+       .catch(err => res.send(err))
+
+
+ })
+
  app.get('/logout', (req, res) => {
    req.logout();
    res.redirect('/movies');

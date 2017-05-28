@@ -72,14 +72,14 @@ export class SingleMovieComponent implements OnInit {
     // this.checkIfLiked();
     this.userLiked = !this.userLiked;
     const userId = this.authService.user._id
-    console.log(typeof userId, userId);
     this.movieData.addOneToFavorite( userId, this.movie);
   }
 
   removeFromList(){
 
     this.userLiked = !this.userLiked;
-    this.movieData.removeOneFromFavorite(this.movie);
+    const userId = this.authService.user._id;
+    this.movieData.removeOneFromFavorite(userId, this.movie);
   }
 
 }
