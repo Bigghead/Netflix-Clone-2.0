@@ -1,8 +1,3 @@
-import { CanActivateRoute } from './Services/singleMovieGuard.service';
-
-import { AuthService } from './Services/authentication.service';
-
-import { MovieDataService } from './Services/moviedata.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -17,6 +12,10 @@ import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { SingleMovieComponent } from './movies/single-movie/single-movie.component';
 import { UserFavoritesComponent } from './movies/user-favorites/user-favorites.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
+
+import { AuthService } from './Services/authentication.service';
+import { CanActivateRoute } from './Services/singleMovieGuard.service';
+import { MovieDataService } from './Services/moviedata.service';
 
 const appRoutes: Routes = [
  
