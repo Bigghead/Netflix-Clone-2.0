@@ -1,13 +1,21 @@
-import { MovieDataService } from './moviedata.service';
+import { AuthService } from './authentication.service';
+
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 
 @Injectable()
 
-export class CanActivateSingle implements CanActivate{
+export class CanActivateRoute implements CanActivate{
     
-    constructor(private movieData: MovieDataService){}
+    constructor(private authService: AuthService,
+                private router: Router){}
+
     canActivate(){
-        return this.movieData.allMovies.length !== 0;
+        if(this.authService.isAuthenticated()){
+            return true;
+        } else {
+            this.router.navigate(['/movies']);
+            return false;
+        }
     }
 }

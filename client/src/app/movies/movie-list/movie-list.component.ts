@@ -34,6 +34,12 @@ export class MovieListComponent implements OnInit, AfterViewInit {
       url: `https://api.themoviedb.org/3/tv/popular?api_key=${Keys.omdbKey}&language=en-US&page=1`,
       fetchMethodName: this.movieData.getPopularShows()
     },
+     {
+      heading: 'Airing Today',
+      type: 'Today',
+      url: `https://api.themoviedb.org/3/tv/airing_today?api_key=${Keys.omdbKey}&language=en-US&page=1`,
+      fetchMethodName: this.movieData.getTodayShows()
+    },
     {
       heading: 'Recently Added Movies',
       type: 'Latest',
@@ -45,7 +51,7 @@ export class MovieListComponent implements OnInit, AfterViewInit {
       type: 'Popular',
       url: `https://api.themoviedb.org/3/movie/popular?api_key=${Keys.omdbKey}&language=en-US&page=1`,
       fetchMethodName: this.movieData.getPopular()
-    },
+    }
 
 
     // url: `https://api.themoviedb.org/3/movie/popular?api_key=${Keys.omdbKey}&language=en-US&page=1`,
@@ -59,17 +65,17 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.getNewest();
+    // this.getNewest();
   }
 
-  getNewest() {
+  // getNewest() {
 
-    this.http.get(`https://api.themoviedb.org/3/movie/latest?api_key=${Keys.omdbKey}&language=en-US`)
-      .map(res => res.json())
-      .subscribe(
-      (res) => this.latestMovie = res
-      )
-  }
+  //   this.http.get(`https://api.themoviedb.org/3/movie/latest?api_key=${Keys.omdbKey}&language=en-US`)
+  //     .map(res => res.json())
+  //     .subscribe(
+  //     (res) => this.latestMovie = res
+  //     )
+  // }
 
   checkAuth() {
     this.http.get('http://localhost:3000/checkAuth')

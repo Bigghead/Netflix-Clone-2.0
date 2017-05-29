@@ -21,6 +21,7 @@ export class MovieDataService {
     PopularShow :boolean = false;
     Popular :boolean = false;
     Latest :boolean = false;
+    Today :boolean = false;
 
 
 
@@ -41,6 +42,10 @@ export class MovieDataService {
 
     getPopularShows() {
         return this.allMovies.filter(movie => movie.type === 'PopularShow')
+    }
+
+    getTodayShows(){
+        return this.allMovies.filter(movie => movie.type === 'Today')        
     }
 
 
