@@ -32,14 +32,17 @@ export class SingleMovieComponent implements OnInit {
 
     this.currentRoute.params.subscribe(
       (params) => {
+
         const id = +params['id'];
         this.id = id;
 
         this.checkIfLiked();
 
-        if (this.movieData.allMovies.length === 0) {
-          this.fetchMovieWithAjax(id);
-          
+         if(params['type']){
+
+          const type = params['type'];
+          this.fetchMovieWithAjax(type, id);
+
         } else {
           this.movie = this.movieData.getOneMovie(id)[0];
           console.log(this.movie);
@@ -48,9 +51,9 @@ export class SingleMovieComponent implements OnInit {
     )
   }
 
-  fetchMovieWithAjax(id: number) {
+  fetchMovieWithAjax(type: string, id: number) {
 
-    this.http.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${Keys.omdbKey}`)
+    this.http.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=${Keys.omdbKey}`)
       .map(res => res.json())
       .subscribe(res => this.movie = res)
   }

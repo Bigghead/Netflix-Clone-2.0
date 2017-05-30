@@ -15,7 +15,7 @@ export class SearchListComponent implements OnInit {
 
   
   searchResults: any[];
-  
+
 
   ngOnInit() {
 
@@ -23,8 +23,10 @@ export class SearchListComponent implements OnInit {
         .params
         .subscribe(
           (params) => {
-            const searchTerm = params['searchTerm'];
-            this.searchMovies(searchTerm);
+            if(params['searchTerm']){
+              const searchTerm = params['searchTerm'];
+              this.searchMovies(searchTerm);
+            }
           }
         )
 
