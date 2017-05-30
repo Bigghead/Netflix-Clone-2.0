@@ -1,3 +1,4 @@
+import { TruncateStringPipe } from './Pipes/truncate-string.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     SingleMovieComponent,
     UserFavoritesComponent,
     UserSettingsComponent,
-    SearchListComponent
+    SearchListComponent,
+    TruncateStringPipe
   ],
   imports: [
     BrowserModule,

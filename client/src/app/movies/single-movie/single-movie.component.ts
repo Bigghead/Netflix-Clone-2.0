@@ -42,7 +42,13 @@ export class SingleMovieComponent implements OnInit {
           const type = params['type'];
           this.fetchMovieWithAjax(type, id);
 
+          //should only get here if the user types in a url
+          //not happy with this, we're forcing user to use search input at the top to get info
+        } else if(this.movieData.allMovies.length === 0) {
+          
+          this.router.navigate(['/movies'])
         } else {
+          
           this.movie = this.movieData.getOneMovie(id)[0];
         }
       }

@@ -1,10 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name : 'truncate'})
+@Pipe({ name: 'truncate' })
 
-export class TruncateStringPipe implements PipeTransform{
+export class TruncateStringPipe implements PipeTransform {
 
-    transform(value: string, howMany: number){
-        return value.slice(0, howMany) + "...";
+    transform(value: string, howMany: number) {
+
+        if (value.length >= 300) {
+            return value.substring(0, howMany) + "...";
+         } else {
+             return value;
+         }
     }
 }
