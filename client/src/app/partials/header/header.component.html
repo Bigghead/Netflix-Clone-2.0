@@ -1,10 +1,10 @@
 <nav class=' '>
   <div class="nav-wrapper black lighten-2 white-text">
     <div class="row">
-      <div class="col m3 s6">
+      <div class="col s4">
         <a routerLink="/movies" class="brand-logo left">NoobFlix</a>        
       </div>
-      <div class="col m4 s6">
+      <div class="col s4">
          <form class='center' (ngSubmit)="searchSubmit()" [formGroup]="searchForm">
         <div class="input-field">
           <input id="search" type="search" class="center-align" 
@@ -15,7 +15,7 @@
         </div>
       </form>
       </div>
-      <div class="col m5 s12">
+      <div class="col s4">
         <ul id="nav-mobile" class="right ">
       <!--<button (click)='logIn()'>Log In</button>-->
       <li><a routerLink='/hello'>hello</a></li>

@@ -29,8 +29,6 @@ export class SingleMovieComponent implements OnInit {
 
   ngOnInit() {
 
-  
-
     this.currentRoute.params.subscribe(
       (params) => {
 
@@ -65,11 +63,11 @@ export class SingleMovieComponent implements OnInit {
   checkIfLiked(){
 
     const user = this.authService.user;
-   if(user) {
-     user.userList.forEach(movie => {
+     if(user) {
+      user.userList.forEach(movie => {
        if( movie.id === this.id){
          this.userLiked = true;
-       }
+         }
        })
      }
    }
