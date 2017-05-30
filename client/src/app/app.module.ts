@@ -1,3 +1,4 @@
+import { DropdownDirective } from './Directive/dropdown.directive';
 import { TruncateStringPipe } from './Pipes/truncate-string.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     UserFavoritesComponent,
     UserSettingsComponent,
     SearchListComponent,
-    TruncateStringPipe
+    TruncateStringPipe,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,

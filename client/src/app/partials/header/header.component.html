@@ -1,37 +1,41 @@
 <nav class=' '>
   <div class="nav-wrapper black lighten-2 white-text">
     <div class="row">
+
       <div class="col s4">
-        <a routerLink="/movies" class="brand-logo left">NoobFlix</a>        
+        <a routerLink="/movies" class="brand-logo left">NoobFlix</a>
       </div>
+
+
       <div class="col s4">
-         <form class='center' (ngSubmit)="searchSubmit()" [formGroup]="searchForm">
-        <div class="input-field">
-          <input id="search" type="search" class="center-align" 
-                 placeholder="Search" required 
-                 formControlName="search" autocomplete="off">
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-      </form>
+        <form class='center' (ngSubmit)="searchSubmit()" [formGroup]="searchForm">
+          <div class="input-field">
+            <input id="search" type="search" class="center-align" placeholder="Search" required formControlName="search" autocomplete="off">
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+        </form>
       </div>
+
+
       <div class="col s4">
-        <ul id="nav-mobile" class="right ">
-      <!--<button (click)='logIn()'>Log In</button>-->
-      <li><a routerLink='/hello'>hello</a></li>
-      <li *ngIf='!user; else userIsOn'><a href='/login'>Register/ Log In</a></li>
+        <a style="cursor: pointer;" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
-      <ng-template #userIsOn>
-        <li ><a [routerLink]="['/user', authService.user._id]">{{ authService.user.userName }}</a></li>        
-        <li><a href='/logout'>Log Out</a></li>
-      </ng-template>
+        <ul id="nav-mobile" class="right hide-on-small-only">
+          <!--<button (click)='logIn()'>Log In</button>-->
+          <li><a routerLink='/hello'>hello</a></li>
+          <li *ngIf='!user; else userIsOn'><a href='/login'>Register/ Log In</a></li>
 
+          <ng-template #userIsOn>
+            <li><a [routerLink]="['/user', authService.user._id]">{{ authService.user.userName }}</a></li>
+            <li><a href='/logout'>Log Out</a></li>
+          </ng-template>
+        </ul>
 
-    </ul>
       </div>
     </div>
-    
-     
-    
+
+
+
   </div>
 </nav>
