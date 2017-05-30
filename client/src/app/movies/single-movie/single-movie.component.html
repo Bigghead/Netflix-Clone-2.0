@@ -41,7 +41,7 @@
 
         <br>
         <br>
-        
+
         <h5 *ngIf="!authService.isAuthenticated()">Log In To Add To Your List</h5>
 
 
@@ -50,5 +50,5 @@
 
   </div>
 
-  <h2 class='center-align' *ngIf=!movie>No Movie Data Available</h2>
+  <h2 class='center-align' *ngIf="!movie">No Movie Data Available</h2>
 </div>

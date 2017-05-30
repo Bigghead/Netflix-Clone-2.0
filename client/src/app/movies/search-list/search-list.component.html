@@ -1,17 +1,30 @@
 <div class="container">
   <div class="row">
     <div class="col s12" *ngFor='let data of searchResults'>
-      <div class="row">
-        <div class="col m4 s6">
-          <img class='responsive-img' src="{{ 'https://image.tmdb.org/t/p/w640' + data.poster_path}}" alt="">
+      <ng-container *ngIf="data.overview && data.poster_path">
+        <div class="row">
+          <div class="col m4 s6">
+            <a [routerLink]="['/search', data.media_type, data.id]">
+            <img class='responsive-img' src="{{ 'https://image.tmdb.org/t/p/w640' + data.poster_path}}" alt="">
+          </a>
+          </div>
+          <div class="col m8 s6">
+
+            <h5 *ngIf="data.media_type === 'tv'; else movie">
+              {{ data.name }}
+            </h5>
+            <ng-template #movie>
+              <h5>{{ data.title }}</h5>
+            </ng-template>
+
+            <p>
+              {{ data.overview | slice:0:300 }}
+            </p>
+          </div>
         </div>
-        <div class="col m8 s6">
-          <p>
-            {{ data.overview }}
-          </p>
-        </div>
-      </div>
-      <hr>
+
+        <hr>
+      </ng-container>
     </div>
   </div>
 </div>

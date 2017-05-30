@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
   searchSubmit(){
     const searchTerm = this.searchForm.value.search;
     this.router.navigate(['/search', searchTerm])
+    this.searchForm.reset();
   }
 
   

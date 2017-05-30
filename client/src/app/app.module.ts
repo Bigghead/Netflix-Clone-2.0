@@ -24,7 +24,7 @@ const appRoutes: Routes = [
     { path : 'movies', component: MovieListComponent}, 
     { path : 'movies/:id', component : SingleMovieComponent},
     { path : 'search/:searchTerm', component : SearchListComponent},  
-    { path : 'search/:type/:searchTerm', component : SingleMovieComponent},          
+    { path : 'search/:type/:id', component : SingleMovieComponent},          
     { path : 'user/:id', component : UserSettingsComponent, canActivate:[CanActivateRoute]},    
     { path : 'hello', component: HeaderComponent}, 
     { path : 'callback', component: AuthCallbackComponent}, 

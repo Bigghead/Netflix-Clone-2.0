@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Rx';
 import { AuthService } from './../../Services/authentication.service';
 import { Http } from '@angular/http';
@@ -37,24 +38,27 @@ export class SingleMovieComponent implements OnInit {
         this.id = id;
 
         this.checkIfLiked();
-
-         if(params['type']){
+        
+         if(params['type'] !== undefined ){
 
           const type = params['type'];
           this.fetchMovieWithAjax(type, id);
 
         } else {
           this.movie = this.movieData.getOneMovie(id)[0];
-          console.log(this.movie);
         }
       }
     )
   }
 
+
   fetchMovieWithAjax(type: string, id: number) {
 
     this.http.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=${Keys.omdbKey}`)
       .map(res => res.json())
+      .catch(error => {
+        return Observable.throw(error);
+      })
       .subscribe(res => this.movie = res)
   }
 
