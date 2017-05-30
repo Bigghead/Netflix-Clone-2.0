@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router'
 
@@ -16,6 +16,7 @@ import { UserSettingsComponent } from './user/user-settings/user-settings.compon
 import { AuthService } from './Services/authentication.service';
 import { CanActivateRoute } from './Services/singleMovieGuard.service';
 import { MovieDataService } from './Services/moviedata.service';
+import { SearchListComponent } from './movies/search-list/search-list.component';
 
 const appRoutes: Routes = [
  
@@ -37,11 +38,13 @@ const appRoutes: Routes = [
     AuthCallbackComponent,
     SingleMovieComponent,
     UserFavoritesComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    SearchListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],

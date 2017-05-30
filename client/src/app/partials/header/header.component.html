@@ -1,7 +1,20 @@
 <nav class=' '>
-  <div class="nav-wrapper black lighten-2 red-text">
-    <a routerLink="/movies" class="brand-logo left">NoobFlix</a>
-    <ul id="nav-mobile" class="right ">
+  <div class="nav-wrapper black lighten-2 white-text">
+    <div class="row">
+      <div class="col m3 s6">
+        <a routerLink="/movies" class="brand-logo left">NoobFlix</a>        
+      </div>
+      <div class="col m4 s6">
+         <form class='center' (ngSubmit)="searchSubmit()" [ngForm]="searchForm">
+        <div class="input-field">
+          <input id="search" type="search" class="center-align"placeholder="Search"required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+      </div>
+      <div class="col m5 s12">
+        <ul id="nav-mobile" class="right ">
       <!--<button (click)='logIn()'>Log In</button>-->
       <li><a routerLink='/hello'>hello</a></li>
       <li *ngIf='!user; else userIsOn'><a href='/login'>Register/ Log In</a></li>
@@ -13,5 +26,10 @@
 
 
     </ul>
+      </div>
+    </div>
+    
+     
+    
   </div>
 </nav>
