@@ -5,9 +5,9 @@
         <a routerLink="/movies" class="brand-logo left">NoobFlix</a>        
       </div>
       <div class="col m4 s6">
-         <form class='center' (ngSubmit)="searchSubmit()" [ngForm]="searchForm">
+         <form class='center' (ngSubmit)="searchSubmit()" [formGroup]="searchForm">
         <div class="input-field">
-          <input id="search" type="search" class="center-align"placeholder="Search"required>
+          <input id="search" type="search" class="center-align" placeholder="Search" required formControlName="search">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
         </div>

@@ -12,17 +12,18 @@ import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { SingleMovieComponent } from './movies/single-movie/single-movie.component';
 import { UserFavoritesComponent } from './movies/user-favorites/user-favorites.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
+import { SearchListComponent } from './movies/search-list/search-list.component';
 
 import { AuthService } from './Services/authentication.service';
 import { CanActivateRoute } from './Services/singleMovieGuard.service';
 import { MovieDataService } from './Services/moviedata.service';
-import { SearchListComponent } from './movies/search-list/search-list.component';
 
 const appRoutes: Routes = [
  
     { path : '', redirectTo: '/movies', pathMatch: 'full'},
     { path : 'movies', component: MovieListComponent}, 
     { path : 'movies/:id', component : SingleMovieComponent},
+    { path : 'search/:searchTerm', component : SearchListComponent},    
     { path : 'user/:id', component : UserSettingsComponent, canActivate:[CanActivateRoute]},    
     { path : 'hello', component: HeaderComponent}, 
     { path : 'callback', component: AuthCallbackComponent}, 
