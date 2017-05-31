@@ -8,7 +8,8 @@
                #allImages
                class='responsive-img carousel-cell'
                src="{{ imageUrl + movie.poster_path  }}">-->
-      <a *ngFor="let movie of userFavorites; let last = last" class='carousel-cell' [routerLink]="['/movies', movie.id]">
+      <a *ngFor="let movie of userFavorites; let last = last" class='carousel-cell' 
+        [routerLink]="movie.media_type ? ['/search', movie.media_type, movie.id] : ['/movies', movie.id]">
         <img *ngIf="movie.poster_path"
              class='responsive-img' 
              src="{{ imageUrl + movie.poster_path  }}">

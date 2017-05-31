@@ -60,6 +60,13 @@ export class SingleMovieComponent implements OnInit {
 
     this.http.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=${Keys.omdbKey}`)
       .map(res => res.json())
+      .map( res => {
+        if(!res['media_type']){
+          res['media_type'] = type;
+          console.log(res);
+        }
+        return res;
+      })
       .catch(error => {
         return Observable.throw(error);
       })
