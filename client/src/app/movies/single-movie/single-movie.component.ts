@@ -63,7 +63,6 @@ export class SingleMovieComponent implements OnInit {
       .map( res => {
         if(!res['media_type']){
           res['media_type'] = type;
-          console.log(res);
         }
         return res;
       })
@@ -72,6 +71,7 @@ export class SingleMovieComponent implements OnInit {
       })
       .subscribe(res => this.movie = res)
   }
+
 
   checkIfLiked(){
 
@@ -92,6 +92,7 @@ export class SingleMovieComponent implements OnInit {
     const userId = this.authService.user._id
     this.movieData.addOneToFavorite( userId, this.movie);
   }
+  
 
   removeFromList(){
 

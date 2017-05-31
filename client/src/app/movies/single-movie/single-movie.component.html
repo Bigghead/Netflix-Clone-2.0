@@ -5,7 +5,9 @@
         <img class='responsive-img' src="{{ imageUrl + movie.poster_path  }}" alt="">
       </div>
       <div class="col m6 s12">
-        <h2><strong>{{ movie.title }}</strong></h2>
+        <h2 *ngIf="!movie.media_type || movie.media_type === 'movie'"><strong>{{ movie.title }}</strong></h2>
+        <h2 *ngIf="movie.media_type && movie.media_type === 'tv'"><strong>{{ movie.name }}</strong></h2>
+        
         <h5><strong>Overview: </strong></h5>
         <p>{{ movie.overview }}</p>
         <br>
