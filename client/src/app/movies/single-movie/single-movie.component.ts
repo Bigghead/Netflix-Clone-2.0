@@ -29,6 +29,7 @@ export class SingleMovieComponent implements OnInit {
   userLiked = false;
   media_type: string;
   trailerUrl ;
+  cast;
 
 
   ngOnInit() {
@@ -41,22 +42,16 @@ export class SingleMovieComponent implements OnInit {
 
         this.checkIfLiked();
         
-        //  if(params['type'] !== undefined ){
 
           const type = params['media_type'];
           this.fetchMovieWithAjax(type, id);
 
           //should only get here if the user types in a url
           //not happy with this, we're forcing user to use search input at the top to get info
-        // } else 
         if(this.movieData.allMovies.length === 0) {
           
           this.router.navigate(['/'])
         }
-        // } else {
-          
-        //   this.movie = this.movieData.getOneMovie(id)[0];
-        // }
       }
     )
   }
@@ -76,10 +71,12 @@ export class SingleMovieComponent implements OnInit {
         return Observable.throw(error);
       })
       .subscribe(res => {
-        console.log(res);
+
         this.movie = res;
         this.media_type = type;
-        this.trailerUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+ res.videos.results[0].key);
+        this.cast = res.credits.cast.filter((cast, index) => index < 4);
+        this.trailerUrl = this.sanitizer
+                              .bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+ res.videos.results[0].key);
 
       })
   }

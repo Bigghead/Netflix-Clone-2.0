@@ -6,11 +6,11 @@
       </div>
       <div class="col m6 s12">
         <h3 *ngIf="movie.title"><strong>{{ movie.title }}</strong></h3>
-        <h3 *ngIf="movie.name"><strong>{{ movie.name }}</strong></h3>        
-        
+        <h3 *ngIf="movie.name"><strong>{{ movie.name }}</strong></h3>
+
         <h5><strong>Ratings:</strong></h5>
-              <i class="material-icons">grade </i>
-              <h4 style="display: inline;">{{ movie.vote_average }}</h4>
+        <i class="material-icons">grade </i>
+        <h4 style="display: inline;">{{ movie.vote_average }}</h4>
         <br>
         <h5><strong>Overview: </strong></h5>
         <p>{{ movie.overview | truncate }}</p>
@@ -21,8 +21,7 @@
 
           <ng-container *ngIf='authService.isAuthenticated() && !userLiked'>
             <div class="col s3">
-              <a class="btn-floating btn-large waves-effect waves-light red"
-                  (click)="addToList()">
+              <a class="btn-floating btn-large waves-effect waves-light red" (click)="addToList()">
                 <i class="material-icons">thumb_up</i>
               </a>
             </div>
@@ -30,13 +29,12 @@
               <h5>Add To My List</h5>
             </div>
           </ng-container>
-          
+
 
           <!--change to !isAuth &&, movie id isnt in array-->
           <ng-container *ngIf='authService.isAuthenticated() && userLiked'>
-             <div class="col s3">
-              <a class="btn-floating btn-large waves-effect waves-light red"
-                 (click)="removeFromList()"><i class="material-icons">thumb_down</i></a>
+            <div class="col s3">
+              <a class="btn-floating btn-large waves-effect waves-light red" (click)="removeFromList()"><i class="material-icons">thumb_down</i></a>
             </div>
             <div class="col s6">
               <h5>Remove From My List</h5>
@@ -52,6 +50,20 @@
 
       </div>
     </div>
+
+    <div class="row">
+      <div class="col m3" *ngFor='let cast of cast; let i = index'>
+        <div class="card">
+            <div class="card-image">
+              <img src="{{ imageUrl + cast.profile_path}}">
+            </div>
+            <div class="card-content">
+              <p>{{ cast.name }}</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
     <div class="row col m12">
       <iframe width="450" height="300" [src]="trailerUrl" frameborder="0" allowfullscreen></iframe>
     </div>
