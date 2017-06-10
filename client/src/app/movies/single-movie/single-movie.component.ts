@@ -37,6 +37,8 @@ export class SingleMovieComponent implements OnInit {
     this.currentRoute.params.subscribe(
       (params) => {
 
+        console.log(params);
+
         const id = +params['id'];
         this.id = id;
 

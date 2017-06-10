@@ -26,7 +26,7 @@ const appRoutes: Routes = [
     // { path : '', redirectTo: '/movies', pathMatch: 'full'},
     { path : '', component: MovieListComponent}, 
     { path : 'search/:searchTerm', component : SearchListComponent},  
-    { path : 'search/:type/:id', component : SingleMovieComponent},          
+    { path : 'search/:media_type/:id', component : SingleMovieComponent},          
     { path : 'user/:id', component : UserSettingsComponent, canActivate:[CanActivateRoute]},    
     { path : ':media_type/:id', component : SingleMovieComponent},
     { path : 'hello', component: HeaderComponent}, 

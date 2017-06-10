@@ -1,5 +1,20 @@
 .static-banner{
-    height: 600px;
+    height: 70vh;
     width: 100%;
-    background-size: contain;
+    position: relative;
+    /*background: url('https://image.tmdb.org/t/p/w640/qedJJ2z9oBYKxxO4Pp8qAkfgPst.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;*/
+}
+
+img{
+    height: 70vh;
+    width: 1500px;
+}
+
+.static-banner .text{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+
 }

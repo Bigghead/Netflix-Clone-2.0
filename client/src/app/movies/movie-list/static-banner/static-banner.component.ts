@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { MovieDataService } from './../../../Services/moviedata.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,29 +11,36 @@ import { Keys } from '../../../../keys';
 })
 export class StaticBannerComponent implements OnInit {
 
-  constructor(private movieData: MovieDataService, 
-              private http: Http) { }
+  constructor(private movieData: MovieDataService,
+    private http: Http) { }
 
   movie;
-  imageUrl = 'https://image.tmdb.org/t/p/w640';
+  // imageUrl: string = 'https://image.tmdb.org/t/p/w640';
+  
+  imageSub;
 
 
   ngOnInit() {
 
-    // this.initData();
+   this.initData();
+
   }
 
 
-  initData(){
+  initData() {
 
-    this.http.get(`https://api.themoviedb.org/3/discover/movie?api_key=${Keys.omdbKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`)
+    this.http.get(`https://api.themoviedb.org/3/movie/282035?api_key=${Keys.omdbKey}&append_to_response=videos,images,credits`)
              .map(res => res.json())
              .subscribe(
                (res) => {
-                 console.log(res);
-                 this.movie = res.results[0];
-               }
-             )
+                console.log(res.images);
+                this.movie = res;
+
+                // this.imageUrl += res.images.backdrops[0].file_path;
+      }
+      )
   }
+
+  
 
 }
