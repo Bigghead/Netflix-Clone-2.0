@@ -74,7 +74,7 @@ export class SingleMovieComponent implements OnInit {
 
         this.movie = res;
         this.media_type = type;
-        this.cast = res.credits.cast.filter((cast, index) => index < 4);
+        this.cast = res.credits.cast.filter((cast, index) => index < 4 && cast.profile_path);
         this.trailerUrl = this.sanitizer
                               .bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+ res.videos.results[0].key);
 
