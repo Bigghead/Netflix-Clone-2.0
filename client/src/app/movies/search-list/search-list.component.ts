@@ -39,7 +39,6 @@ export class SearchListComponent implements OnInit {
              .map(res => res.json())
              .subscribe(
                (res) => {
-                 console.log(res.results);
                  this.searchResults = res.results;
                }
              )

@@ -22,7 +22,8 @@ export class MovieRowComponent implements OnInit {
              heading: string,
              type: string,
              url: string,
-             fetchMethodName: any
+             fetchMethodName: any,
+             media_type: string
           }
   @Input() index: number;
 
@@ -54,6 +55,8 @@ export class MovieRowComponent implements OnInit {
         .map(res => {
 
           res.results.forEach(movie => {
+
+            movie.media_type = this.movieObj.media_type;
             if (!movie.type) {
               movie.type = this.movieObj.type;
             }

@@ -26,31 +26,36 @@ export class MovieListComponent implements OnInit, AfterViewInit {
       heading: 'Top Rated Shows',
       type: 'TopShow',
       url: `https://api.themoviedb.org/3/tv/top_rated?api_key=${Keys.omdbKey}&language=en-US&page=1`,
-      fetchMethodName: this.movieData.getTopRatedShows()
+      fetchMethodName: this.movieData.getTopRatedShows(),
+      media_type: 'tv'
     },
     {
       heading: 'Popular Shows',
       type: 'PopularShow',
       url: `https://api.themoviedb.org/3/tv/popular?api_key=${Keys.omdbKey}&language=en-US&page=1`,
-      fetchMethodName: this.movieData.getPopularShows()
+      fetchMethodName: this.movieData.getPopularShows(),
+      media_type: 'tv'
     },
      {
       heading: 'Airing Today',
       type: 'Today',
       url: `https://api.themoviedb.org/3/tv/airing_today?api_key=${Keys.omdbKey}&language=en-US&page=1`,
-      fetchMethodName: this.movieData.getTodayShows()
+      fetchMethodName: this.movieData.getTodayShows(),
+      media_type: 'tv'
     },
     {
       heading: 'Recently Added Movies',
       type: 'Latest',
       url: `https://api.themoviedb.org/3/movie/now_playing?api_key=${Keys.omdbKey}&language=en-US&page=1`,
-      fetchMethodName: this.movieData.getLatest()
+      fetchMethodName: this.movieData.getLatest(),
+      media_type: 'movie'
     },
     {
       heading: 'Popular Movies',
       type: 'Popular',
       url: `https://api.themoviedb.org/3/movie/popular?api_key=${Keys.omdbKey}&language=en-US&page=1`,
-      fetchMethodName: this.movieData.getPopular()
+      fetchMethodName: this.movieData.getPopular(),
+      media_type: 'movie'
     }
 
 

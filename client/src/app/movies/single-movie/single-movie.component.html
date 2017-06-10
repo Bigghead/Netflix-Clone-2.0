@@ -5,11 +5,15 @@
         <img class='responsive-img' src="{{ imageUrl + movie.poster_path  }}" alt="">
       </div>
       <div class="col m6 s12">
-        <h2 *ngIf="!movie.media_type || movie.media_type === 'movie'"><strong>{{ movie.title }}</strong></h2>
-        <h2 *ngIf="movie.media_type && movie.media_type === 'tv'"><strong>{{ movie.name }}</strong></h2>
+        <h3 *ngIf="movie.title"><strong>{{ movie.title }}</strong></h3>
+        <h3 *ngIf="movie.name"><strong>{{ movie.name }}</strong></h3>        
         
+        <h5><strong>Ratings:</strong></h5>
+              <i class="material-icons">grade </i>
+              <h4 style="display: inline;">{{ movie.vote_average }}</h4>
+        <br>
         <h5><strong>Overview: </strong></h5>
-        <p>{{ movie.overview }}</p>
+        <p>{{ movie.overview | truncate }}</p>
         <br>
         <br>
 
@@ -42,14 +46,15 @@
         </div>
 
         <br>
-        <br>
 
         <h5 *ngIf="!authService.isAuthenticated()">Log In To Add To Your List</h5>
 
 
       </div>
     </div>
-
+    <div class="row col m12">
+      <iframe width="450" height="300" [src]="trailerUrl" frameborder="0" allowfullscreen></iframe>
+    </div>
   </div>
 
   <!--<h2 class='center-align' *ngIf="!movie">No Movie Data Available</h2>-->

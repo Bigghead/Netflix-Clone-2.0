@@ -1,6 +1,6 @@
-<nav class=' '>
-  <div class="nav-wrapper nav-collpase black lighten-2 white-text">
-    <div class="row">
+<nav class=''>
+  <div class="nav-wrapper  black lighten-2 white-text ">
+    <div class="row hide-on-small-only">
 
       <div class="col s4">
         <a routerLink="/movies" class="brand-logo left">NoobFlix</a>
@@ -18,9 +18,9 @@
       </div>
 
 
-      <div class="col s4">
+      <div class="col s4 ">
         
-        <ul id="nav-mobile" class="right">
+        <ul id="nav-mobile" class="right ">
           <li *ngIf='!user; else userIsOn'><a href='/login'>Register/ Log In</a></li>
 
           <ng-template #userIsOn>
@@ -28,15 +28,21 @@
             <li><a href='/logout'>Log Out</a></li>
           </ng-template>
         </ul>
-        <!--<a style="cursor: pointer;" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>-->
         
 
       </div>
     </div>
-
-
-
-  </div>
+        <a style="cursor: pointer;" data-activates="dropdown1" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#!">First</a></li>
+        <li><a href="#!">Second</a></li>
+        <li><a href="#!">Third</a></li>
+        <li><a href="#!">Fourth</a></li>
+      </ul>
+ </div> 
 </nav>
+
+
+
 
 

@@ -56,7 +56,7 @@ export class MovieDataService {
 
     addOneToFavorite(userId, movie) {
 
-        this.http.post(`http://localhost:3000/${userId}/movies`, movie)
+        this.http.post(`http://localhost:3000/${userId}/`, movie)
                  .catch(err => Observable.throw(err))
                  .subscribe(
                      (res) => {
@@ -68,7 +68,7 @@ export class MovieDataService {
 
     removeOneFromFavorite(userId, movie) {
 
-        this.http.patch(`http://localhost:3000/${userId}/movies`, movie)
+        this.http.patch(`http://localhost:3000/${userId}/`, movie)
                  .map(res => res.json())
                  .catch(err => Observable.throw(err))
                  .subscribe(

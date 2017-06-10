@@ -14,7 +14,7 @@ export class CanActivateRoute implements CanActivate{
         if(this.authService.isAuthenticated()){
             return true;
         } else {
-            this.router.navigate(['/movies']);
+            this.router.navigate(['/']);
             return false;
         }
     }

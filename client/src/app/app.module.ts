@@ -19,15 +19,16 @@ import { SearchListComponent } from './movies/search-list/search-list.component'
 import { AuthService } from './Services/authentication.service';
 import { CanActivateRoute } from './Services/singleMovieGuard.service';
 import { MovieDataService } from './Services/moviedata.service';
+import { StaticBannerComponent } from './movies/movie-list/static-banner/static-banner.component';
 
 const appRoutes: Routes = [
  
-    { path : '', redirectTo: '/movies', pathMatch: 'full'},
-    { path : 'movies', component: MovieListComponent}, 
-    { path : 'movies/:id', component : SingleMovieComponent},
+    // { path : '', redirectTo: '/movies', pathMatch: 'full'},
+    { path : '', component: MovieListComponent}, 
     { path : 'search/:searchTerm', component : SearchListComponent},  
     { path : 'search/:type/:id', component : SingleMovieComponent},          
     { path : 'user/:id', component : UserSettingsComponent, canActivate:[CanActivateRoute]},    
+    { path : ':media_type/:id', component : SingleMovieComponent},
     { path : 'hello', component: HeaderComponent}, 
     { path : 'callback', component: AuthCallbackComponent}, 
     
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     UserSettingsComponent,
     SearchListComponent,
     TruncateStringPipe,
-    DropdownDirective
+    DropdownDirective,
+    StaticBannerComponent
   ],
   imports: [
     BrowserModule,

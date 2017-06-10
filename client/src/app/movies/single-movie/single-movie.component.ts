@@ -2,6 +2,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Rx';
 import { AuthService } from './../../Services/authentication.service';
 import { Http } from '@angular/http';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDataService } from './../../Services/moviedata.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,13 +19,16 @@ export class SingleMovieComponent implements OnInit {
     private currentRoute: ActivatedRoute,
     private router: Router,
     private http: Http,
-    private authService: AuthService) { }
+    private authService: AuthService, 
+    private sanitizer: DomSanitizer) { }
 
 
   movie;
   imageUrl = 'https://image.tmdb.org/t/p/w640';
   id: number;
   userLiked = false;
+  media_type: string;
+  trailerUrl ;
 
 
   ngOnInit() {
@@ -37,20 +41,22 @@ export class SingleMovieComponent implements OnInit {
 
         this.checkIfLiked();
         
-         if(params['type'] !== undefined ){
+        //  if(params['type'] !== undefined ){
 
-          const type = params['type'];
+          const type = params['media_type'];
           this.fetchMovieWithAjax(type, id);
 
           //should only get here if the user types in a url
           //not happy with this, we're forcing user to use search input at the top to get info
-        } else if(this.movieData.allMovies.length === 0) {
+        // } else 
+        if(this.movieData.allMovies.length === 0) {
           
-          this.router.navigate(['/movies'])
-        } else {
-          
-          this.movie = this.movieData.getOneMovie(id)[0];
+          this.router.navigate(['/'])
         }
+        // } else {
+          
+        //   this.movie = this.movieData.getOneMovie(id)[0];
+        // }
       }
     )
   }
@@ -58,7 +64,7 @@ export class SingleMovieComponent implements OnInit {
 
   fetchMovieWithAjax(type: string, id: number) {
 
-    this.http.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=${Keys.omdbKey}`)
+    this.http.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=${Keys.omdbKey}&append_to_response=videos,images,credits`)
       .map(res => res.json())
       .map( res => {
         if(!res['media_type']){
@@ -69,7 +75,13 @@ export class SingleMovieComponent implements OnInit {
       .catch(error => {
         return Observable.throw(error);
       })
-      .subscribe(res => this.movie = res)
+      .subscribe(res => {
+        console.log(res);
+        this.movie = res;
+        this.media_type = type;
+        this.trailerUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+ res.videos.results[0].key);
+
+      })
   }
 
 
