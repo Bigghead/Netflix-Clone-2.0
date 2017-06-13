@@ -22,6 +22,7 @@ Router.post('/:userId/movies', (req, res) => {
 Router.patch('/:userId/movies', (req, res) => {
 
     const movieId = req.body.id
+    console.log('heoooo');
 
     User.findById(req.params.userId)
         .exec()
@@ -44,6 +45,25 @@ Router.patch('/:userId/movies', (req, res) => {
 
 Router.patch('/:userId/edit', (req, res) => {
     console.log(req.body);
+
+    const { userName, fullName, about } = req.body;
+
+    User.findById(req.params.userId)
+        .exec()
+        .then(user => {
+           
+                 console.log(user);
+            user.userSettings.newUserName = userName
+            user.userSettings.fullName = fullName;
+            user.userSettings.about    = about;
+
+            return user.save();
+        })
+        .then( user => {
+            console.log(user);
+            res.status(200).json(user);
+        })
+        .catch( err => res.send(err))
 })
 
 

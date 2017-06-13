@@ -24,7 +24,8 @@
           <li *ngIf='!user; else userIsOn'><a href='/login'>Register/ Log In</a></li>
 
           <ng-template #userIsOn>
-            <li><a [routerLink]="['/user', authService.user._id]">{{ authService.user.userName }}</a></li>
+            <li *ngIf='!authService.user.userSettings.newUserName'><a [routerLink]="['/user', authService.user._id]">{{ authService.user.userName }}</a></li>
+            <li *ngIf='authService.user.userSettings.newUserName'><a [routerLink]="['/user', authService.user._id]">{{ authService.user.userSettings.newUserName }}</a></li>            
             <li><a href='/logout'>Log Out</a></li>
           </ng-template>
         </ul>

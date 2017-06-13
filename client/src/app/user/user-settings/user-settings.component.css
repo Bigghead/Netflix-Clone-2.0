@@ -1,3 +1,9 @@
+.settings-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
 .user-image{
     max-height: 225px;
 }

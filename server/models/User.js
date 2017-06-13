@@ -4,9 +4,9 @@ const userSchema = new mongoose.Schema({
     userName: String,
     userList : [], 
     userSettings: {
-        username: String, 
-        fullName: String, 
-        about: String
+        newUserName: { type: String, default: '' },
+        fullName: { type: String, default: '' }, 
+        about: { type: String, default: '' }
 
     }
 });

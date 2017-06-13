@@ -4,18 +4,20 @@
       <img class='responsive-img user-image' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
         alt="">
       <hr>
-      <p>@{{ user.userName }}</p>
+      <p *ngIf="!user.userSettings.newUserName">@{{ user.userName }}</p>
+      <p *ngIf="user.userSettings.newUserName">@{{ user.userSettings.newUserName }}</p>
+      
       <br>
       <a class="waves-effect waves-light btn" [routerLink]="['/user', user._id, 'edit']">Update Account</a>
     </div>
 
     <div class="col s8">
-      <ng-container *ngIf='user.about'>
+      <ng-container *ngIf='user.userSettings.about'>
         <h3>About:</h3>
-        <h5>{{ user.about }}</h5>
+        <h5>{{ user.userSettings.about }}</h5>
       </ng-container>
 
-      <ng-container *ngIf='!user.about'>
+      <ng-container *ngIf='!user.userSettings.about'>
         <h3>About:</h3>
         <h5>This user still needs to write something about themselves</h5>
       </ng-container>
