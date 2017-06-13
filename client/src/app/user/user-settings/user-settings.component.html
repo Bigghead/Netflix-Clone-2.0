@@ -1,3 +1,26 @@
-<p>
-  user-settings works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col s4">
+      <img class='responsive-img user-image' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+        alt="">
+      <hr>
+      <p>@{{ user.userName }}</p>
+      <br>
+      <button class="waves-effect waves-light btn">Update Account</button>
+    </div>
+
+    <div class="col s8">
+      <ng-container *ngIf='user.about'>
+        <h3>About:</h3>
+        <h5>{{ user.about }}</h5>
+      </ng-container>
+
+      <ng-container *ngIf='!user.about'>
+        <h3>About:</h3>
+        <h5>This user still needs to write something about themselves</h5>
+      </ng-container>
+    </div>
+  </div>
+
+
+</div>

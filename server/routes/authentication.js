@@ -16,7 +16,7 @@ Router.get('/callback', function (req, res, next) {
         if (!user) { return res.redirect('/'); }
         req.logIn(user, function (err) {
             if (err) { return next(err); }
-            return res.redirect('/movies');
+            return res.redirect('/');
         });
     })(req, res, next);
 });
@@ -37,7 +37,7 @@ Router.get('/checkAuth', (req, res, next) => {
 
 Router.get('/logout', (req, res) => {
    req.logout();
-   res.redirect('/movies');
+   res.redirect('/');
  })
 
  module.exports = Router;
