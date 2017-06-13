@@ -6,7 +6,7 @@
       <hr>
       <p>@{{ user.userName }}</p>
       <br>
-      <button class="waves-effect waves-light btn">Update Account</button>
+      <a class="waves-effect waves-light btn" [routerLink]="['/user', user._id, 'edit']">Update Account</a>
     </div>
 
     <div class="col s8">

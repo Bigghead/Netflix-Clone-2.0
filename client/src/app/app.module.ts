@@ -20,6 +20,7 @@ import { AuthService } from './Services/authentication.service';
 import { CanActivateRoute } from './Services/singleMovieGuard.service';
 import { MovieDataService } from './Services/moviedata.service';
 import { StaticBannerComponent } from './movies/movie-list/static-banner/static-banner.component';
+import { UserUpdateComponent } from './user/user-update/user-update.component';
 
 const appRoutes: Routes = [
  
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     { path : '', component: MovieListComponent}, 
     { path : 'search/:searchTerm', component : SearchListComponent},  
     { path : 'search/:media_type/:id', component : SingleMovieComponent},          
-    { path : 'user/:id', component : UserSettingsComponent, canActivate:[CanActivateRoute]},    
+    { path : 'user/:id', component : UserSettingsComponent, canActivate:[CanActivateRoute]},  
+    { path : 'user/:id/edit', component : UserUpdateComponent, canActivate:[CanActivateRoute]},          
     { path : ':media_type/:id', component : SingleMovieComponent},
     { path : 'hello', component: HeaderComponent}, 
     { path : 'callback', component: AuthCallbackComponent}, 
@@ -47,7 +49,8 @@ const appRoutes: Routes = [
     SearchListComponent,
     TruncateStringPipe,
     DropdownDirective,
-    StaticBannerComponent
+    StaticBannerComponent,
+    UserUpdateComponent
   ],
   imports: [
     BrowserModule,

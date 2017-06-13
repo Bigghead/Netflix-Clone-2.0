@@ -42,4 +42,9 @@ Router.patch('/:userId/movies', (req, res) => {
 })
 
 
+Router.patch('/:userId/edit', (req, res) => {
+    console.log(req.body);
+})
+
+
 module.exports = Router;

@@ -1,0 +1,26 @@
+
+  <div class="container">
+    <form (ngSubmit)="submitForm()" [formGroup]="accountForm">
+      <div class="row">
+         <div class=" col s6">
+         <label for="first_name">User Name</label>
+          <input formControlName="userName" id="first_name" type="text" class="validate">
+          </div>
+      </div>
+
+      <div class="row">
+        <div class=" col s6">
+         <label for="full">Full Name</label>
+          <input formControlName="fullName" id="full" type="text" class="validate">
+          </div>
+      </div>
+      
+
+          <div class=" col s12">
+            <label for="textarea1">About:</label>
+          <textarea formControlName="about" id="textarea1" class="materialize-textarea"></textarea>
+          
+        </div>
+      <button class='waves-effect waves-light btn' type="submit">Update Account</button>
+    </form>
+  </div>
