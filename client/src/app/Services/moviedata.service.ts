@@ -73,6 +73,7 @@ export class MovieDataService {
                  .catch(err => Observable.throw(err))
                  .subscribe(
                     (res) => {
+                        console.log(res);
                         this.authService.user.userList = res;
                    }
                  )
