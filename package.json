@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-      "postinstall": "ng build --aot -prod"
+   "postinstall": "npm install express"
 
   },
   "dependencies": {
