@@ -10,9 +10,11 @@
           </div>
           <div class="col m8 s6">
 
+            <a [routerLink]="['/search', data.media_type, data.id]">
             <h5 *ngIf="data.media_type === 'tv'; else movie">
               {{ data.name }}
             </h5>
+            </a>
             <ng-template #movie>
               <h5>{{ data.title }}</h5>
             </ng-template>

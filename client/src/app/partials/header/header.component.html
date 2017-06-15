@@ -19,31 +19,40 @@
 
 
       <div class="col s4 ">
-        
+
         <ul id="nav-mobile" class="right ">
           <li *ngIf='!user; else userIsOn'><a href='/login'>Register/ Log In</a></li>
 
           <ng-template #userIsOn>
             <li *ngIf='!authService.user.userSettings.newUserName'><a [routerLink]="['/user', authService.user._id]">{{ authService.user.userName }}</a></li>
-            <li *ngIf='authService.user.userSettings.newUserName'><a [routerLink]="['/user', authService.user._id]">{{ authService.user.userSettings.newUserName }}</a></li>            
+            <li *ngIf='authService.user.userSettings.newUserName'><a [routerLink]="['/user', authService.user._id]">{{ authService.user.userSettings.newUserName }}</a></li>
             <li><a href='/logout'>Log Out</a></li>
           </ng-template>
         </ul>
-        
+
 
       </div>
     </div>
-        <a style="cursor: pointer;" data-activates="dropdown1" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="#!">First</a></li>
-        <li><a href="#!">Second</a></li>
-        <li><a href="#!">Third</a></li>
-        <li><a href="#!">Fourth</a></li>
-      </ul>
- </div> 
+    <a routerLink="/" class="brand-logo left hide-on-med-and-up">NoobFlix</a>
+    <a style="cursor: pointer;" data-activates="dropdown1" class="dropdown-button hide-on-med-and-up right"><i class="material-icons">menu</i></a>
+
+    <ul id='dropdown1' class='dropdown-content'>
+      <li><a routerLink='/'>Netflix Clone</a></li>
+      <li *ngIf='!user; else mobileUserIsOn'><a href='/login'>Register/ Log In</a></li>
+       <ng-template #mobileUserIsOn>
+            <li *ngIf='!authService.user.userSettings.newUserName'><a [routerLink]="['/user', authService.user._id]">{{ authService.user.userName }}</a></li>
+            <li *ngIf='authService.user.userSettings.newUserName'><a [routerLink]="['/user', authService.user._id]">{{ authService.user.userSettings.newUserName }}</a></li>
+            <li><a href='/logout'>Log Out</a></li>
+          </ng-template>
+    </ul>
+    
+  </div>
 </nav>
-
-
-
-
+ <form class='hide-on-med-and-up small-form' (ngSubmit)="searchSubmit()" [formGroup]="searchForm">
+          <div class="input-field ">
+            <input id="search" type="search" class="center-align valign-wrapper" placeholder="Search" required formControlName="search" autocomplete="off">
+            <label class="label-icon" for="search"><i class="material-icons prefix">search</i></label>
+            <!--<i class="material-icons">close</i>-->
+          </div>
+        </form>
 

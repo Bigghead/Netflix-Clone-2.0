@@ -1,5 +1,6 @@
 nav{
-    margin-bottom: 3%;
+    /*margin-bottom: 3%;*/
+    height: 50px;
 }
 
 .input-field{
@@ -7,7 +8,7 @@ nav{
 }
 
 input[type="search"] {
-  height: 64px !important; /* or height of nav */
+  height: 50px;  
 }
 
 input[type="search"]:hover {
@@ -22,4 +23,8 @@ input[type="search"]:focus {
 input:-webkit-autofill{
     background-color:black;
     color: white;
+}
+
+.small-form{
+    height: 50px !important;
 }

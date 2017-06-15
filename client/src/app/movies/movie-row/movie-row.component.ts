@@ -36,30 +36,18 @@ export class MovieRowComponent implements OnInit {
     let type = this.movieObj.type;
     let dataFetched = this.movieData[type];
 
-    // if(!dataFetched){
-    //   //  this.fetchData();
-    //   return new Promise( (resolve, reject) => {
-    //     this.fetchData();
-    //     resolve('hi');
-    //   }).then( (e) => {
-    //     console.log(e)
-    //     console.log('after fetching');
-        
-    //     this.loadFlickity(this.index)
-    //   })
 
-    // } else {
-
-    //   this.movies = this.movieObj.fetchMethodName;
-    //   setTimeout( () => this.loadFlickity(this.index) );
-    // }
     return (async () => {
+
       if(!dataFetched){
+
         await this.fetchData();
        } else {
+
          this.movies = this.movieObj.fetchMethodName
        }
-    })().then( () => setTimeout( () => this.loadFlickity(this.index)))
+    })().then( () => setTimeout( () => this.loadFlickity(this.index) ) )
+
   }
 
 
@@ -87,8 +75,6 @@ export class MovieRowComponent implements OnInit {
 
           const newArr = this.movieData.allMovies.concat(this.movies);
           this.movieData.allMovies = newArr;
-
-          // setTimeout( () => this.loadFlickity(this.index) );
           
           }
         )
