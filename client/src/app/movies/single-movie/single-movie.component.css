@@ -11,6 +11,10 @@
     padding-left: 40px;
 }
 
+.cast-image{
+    height: 300px;
+}
+
 .cast-name{
     color: black !important;
 }

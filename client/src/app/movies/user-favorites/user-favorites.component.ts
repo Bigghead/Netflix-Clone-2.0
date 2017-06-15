@@ -1,3 +1,4 @@
+import { MovieDataService } from './../../Services/moviedata.service';
 import * as Flickity from 'flickity';
 import { AuthService } from './../../Services/authentication.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,15 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserFavoritesComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, 
+              private movieData: MovieDataService) { }
+
+
   userFavorites = [];
-    imageUrl = 'https://image.tmdb.org/t/p/w640';
+  imageUrl = 'https://image.tmdb.org/t/p/w640';
 
 
   ngOnInit() {
+
     this.userFavorites = this.authService.user.userList;
-    setTimeout(this.loadFlickity);
+
+    // this.movieData.userMovies
+    //               .subscribe( res => {
+    //                 this.userFavorites = res;
+    //               })
+
+    setTimeout( () => this.loadFlickity() );
+
   }
+
 
   loadFlickity() {
 

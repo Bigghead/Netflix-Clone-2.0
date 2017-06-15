@@ -24,14 +24,14 @@ import { UserUpdateComponent } from './user/user-update/user-update.component';
 
 const appRoutes: Routes = [
  
-    // { path : '', redirectTo: '/movies', pathMatch: 'full'},
+    { path : '', redirectTo: '/', pathMatch: 'full'},
     { path : '', component: MovieListComponent}, 
     { path : 'search/:searchTerm', component : SearchListComponent},  
     { path : 'search/:media_type/:id', component : SingleMovieComponent},          
     { path : 'user/:id', component : UserSettingsComponent, canActivate:[CanActivateRoute]},  
     { path : 'user/:id/edit', component : UserUpdateComponent, canActivate:[CanActivateRoute]},          
     { path : ':media_type/:id', component : SingleMovieComponent},
-    { path : 'hello', component: HeaderComponent}, 
+    // { path : 'hello', component: HeaderComponent}, 
     { path : 'callback', component: AuthCallbackComponent}, 
     
 ]

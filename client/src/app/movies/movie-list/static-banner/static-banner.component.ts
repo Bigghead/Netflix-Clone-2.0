@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
-import { MovieDataService } from './../../../Services/moviedata.service';
+// import { MovieDataService } from './../../../Services/moviedata.service';
 import { Component, OnInit } from '@angular/core';
 import { Keys } from '../../../../keys';
 
@@ -11,36 +11,27 @@ import { Keys } from '../../../../keys';
 })
 export class StaticBannerComponent implements OnInit {
 
-  constructor(private movieData: MovieDataService,
-    private http: Http) { }
+  constructor(
+              private http: Http) { }
 
   movie;
-  // imageUrl: string = 'https://image.tmdb.org/t/p/w640';
-  
-  imageSub;
+  imageUrl: string = 'https://image.tmdb.org/t/p/w780';
+  random = Math.round(Math.random() * 18) + 1 ;
 
 
   ngOnInit() {
 
-   this.initData();
+    // this.http.get(`https://api.themoviedb.org/3/movie/popular?api_key=${Keys.omdbKey}&language=en-US&page=1`)
+    //          .map(res => res.json())
+    //          .subscribe(res => {
+
+    //           this.movie = res.results.filter(movie => {
+    //             return movie.backdrop_path != null;
+    //           })
+    //           console.log(this.movie);
+
+    //          })
 
   }
-
-
-  initData() {
-
-    this.http.get(`https://api.themoviedb.org/3/movie/282035?api_key=${Keys.omdbKey}&append_to_response=videos,images,credits`)
-             .map(res => res.json())
-             .subscribe(
-               (res) => {
-                console.log(res.images);
-                this.movie = res;
-
-                // this.imageUrl += res.images.backdrops[0].file_path;
-      }
-      )
-  }
-
-  
 
 }

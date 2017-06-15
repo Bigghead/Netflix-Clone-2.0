@@ -55,8 +55,8 @@
       <div class="col m3 s6" *ngFor='let cast of cast; let i = index'>
         <div class="card">
           <div class="card-image">
-            <img src="{{ imageUrl + cast.profile_path}}">
-            <span class="card-title">{{ cast.name }}</span>
+            <img class='cast-image'src="{{ imageUrl + cast.profile_path}}">
+            <!--<span class="card-title">{{ cast.name }}</span>-->
           </div>
           <div class="card-content">
             <p class='cast-name'>{{ cast.name }}</p>

@@ -17,6 +17,7 @@ export class MovieDataService {
 
     allMovies: any[] = [];
     allDataFetched = new Subject<any>();
+    userMovies = new Subject<any>();
     TopShow :boolean = false;
     PopularShow :boolean = false;
     Popular :boolean = false;
@@ -61,6 +62,7 @@ export class MovieDataService {
                  .subscribe(
                      (res) => {
                         this.authService.user.userList.push(movie);
+                        this.userMovies.next(this.authService.user.userList);
                  }
             )
     }
@@ -75,6 +77,7 @@ export class MovieDataService {
                     (res) => {
                         console.log(res);
                         this.authService.user.userList = res;
+                        this.userMovies.next(this.authService.user.userList);
                    }
                  )
         }
