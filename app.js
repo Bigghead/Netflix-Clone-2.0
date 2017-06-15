@@ -9,8 +9,8 @@ const express = require('express'),
       mongoose = require('mongoose'),
       
       passport = require('passport'), 
-      passportConfig = require('./server/passportConfig.js'),
-      authKeys = require('./server/authKeys.js');
+      passportConfig = require('./server/passportConfig.js');
+      // authKeys = require('./server/authKeys.js');
 
       
 // ===== Models =====
@@ -26,7 +26,7 @@ const app = express();
 
 // ===== Mongoose Setup =====
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://${authKeys.mlabUser}:${authKeys.mlabPass}@ds151941.mlab.com:51941/netflix-clone`);
+mongoose.connect(`mongodb://${process.env.mlabUser}:${process.env.mlabPass}@ds151941.mlab.com:51941/netflix-clone`);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,6 +56,6 @@ app.use('/', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 // });
 
-app.listen(3000, () => console.log('listening on 3000'));
+app.listen(process.env.PORT);
 
 module.exports = app;

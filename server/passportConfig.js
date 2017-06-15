@@ -1,6 +1,6 @@
 const Auth0Strategy = require('passport-auth0'),
       passport      = require('passport'),
-      authKeys      = require('./authKeys.js'),
+      // authKeys      = require('./authKeys.js'),
 
       express = require('express'),
       app     = express(),
@@ -10,10 +10,10 @@ const Auth0Strategy = require('passport-auth0'),
       User    = require('./models/User.js');
 
 const strategy = new Auth0Strategy({
-  domain:    authKeys.domain,
-  clientID:  authKeys.clientID, 
-  clientSecret: authKeys.clientSecret,
-  callbackURL:  authKeys.callbackURL
+  domain:    process.env.domain,
+  clientID:  process.env.clientID, 
+  clientSecret: process.env.clientSecret,
+  callbackURL:  process.env.callbackURL
 },
   function (accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
