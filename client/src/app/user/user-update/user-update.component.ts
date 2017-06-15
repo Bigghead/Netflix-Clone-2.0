@@ -40,7 +40,7 @@ export class UserUpdateComponent implements OnInit {
     console.log(this.accountForm.value);
     const updates = this.accountForm.value;
 
-    this.http.patch(`http://localhost:3000/${this.user._id}/edit`, updates)
+    this.http.patch(`https://morning-retreat-68692.herokuapp.com/${this.user._id}/edit`, updates)
              .map(res => res.json())
              .subscribe( res => {
                console.log(res); 

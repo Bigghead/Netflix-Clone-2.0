@@ -18,7 +18,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     
-    this.http.get('http://localhost:3000/checkAuth')
+    this.http.get('https://morning-retreat-68692.herokuapp.com/checkAuth')
         .map(data => data.json())
         .catch(err => Observable.throw(err))
         .subscribe(

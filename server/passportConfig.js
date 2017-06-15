@@ -41,7 +41,7 @@ const strategy = new Auth0Strategy({
 );
 
 router.use(require('express-session')({
-  secret: authKeys.secret,
+  secret: process.env.secret,
   resave: true,
   saveUninitialized: true
 }));
