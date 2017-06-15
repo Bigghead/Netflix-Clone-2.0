@@ -8,6 +8,10 @@
     background-repeat: no-repeat;*/
 }
 
+.static-image{
+    width: 100%;
+}
+
 img{
     height: 70vh;
     width: 1500px;
