@@ -26,7 +26,10 @@ const app = express();
 
 // ===== Mongoose Setup =====
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://${process.env.mlabUser}:${process.env.mlabPass}@ds151941.mlab.com:51941/netflix-clone`);
+const mlabUser = process.env.mlabUser || authKeys.mlabUser;
+const mlabPass = process.env.mlabPass || authKeys.mlabPass;
+const PORT     = process.env.PORT     || 3000;
+mongoose.connect(`mongodb://${mlabUser}:${mlabPass}@ds151941.mlab.com:51941/netflix-clone`);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,6 +59,6 @@ app.use('/', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 // });
 
-app.listen(process.env.PORT);
+app.listen(PORT);
 
 module.exports = app;
