@@ -10,10 +10,10 @@ const Auth0Strategy = require('passport-auth0'),
       User    = require('./models/User.js');
 
 const strategy = new Auth0Strategy({
-  domain:    process.env.domain,
-  clientID:  process.env.clientID, 
-  clientSecret: process.env.clientSecret,
-  callbackURL:  process.env.callbackURL
+  domain:    process.env.domain || authKeys.domain,
+  clientID:  process.env.clientID || authKeys.clientID, 
+  clientSecret: process.env.clientSecret || authKeys.clientSecret,
+  callbackURL:  process.env.callbackURL || authKeys.callbackURL
 },
   function (accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
@@ -41,7 +41,7 @@ const strategy = new Auth0Strategy({
 );
 
 router.use(require('express-session')({
-  secret: process.env.secret,
+  secret: process.env.secret || authKeys.secret,
   resave: true,
   saveUninitialized: true
 }));

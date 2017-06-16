@@ -9,17 +9,16 @@ Router.get('/login',
 
 
 
-Router.get('/callback', function (req, res, next) {
+Router.get('/callback',
+  passport.authenticate('auth0',
+  function(req, res) {
+    if (!req.user) {
+      throw new Error('user null');
+    }
+    res.redirect("/");
+  }
+));
 
-    passport.authenticate('auth0', function (err, user, info) {
-        if (err) { return next(err); }
-        if (!user) { return res.redirect('/'); }
-        req.logIn(user, function (err) {
-            if (err) { return next(err); }
-            return res.redirect('/');
-        });
-    })(req, res, next);
-});
 
 
 
