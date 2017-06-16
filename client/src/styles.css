@@ -2,6 +2,13 @@
 body{
     background-color: black;
     color: white;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+}
+
+nav .brand-logo{
+    color: red;
+    font-size: 600;
 }
 
 nav ul a {
