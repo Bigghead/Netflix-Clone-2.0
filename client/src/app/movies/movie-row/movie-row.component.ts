@@ -36,12 +36,13 @@ export class MovieRowComponent implements OnInit {
     let type = this.movieObj.type;
     let dataFetched = this.movieData[type];
 
-      this.loadFlickity(this.index);
     
     if(!dataFetched){
        this.fetchData();
 
     } else {
+      this.loadFlickity(this.index);
+      
       this.movies = this.movieObj.fetchMethodName;
       // setTimeout( () => this.loadFlickity(this.index) );
     }
@@ -73,7 +74,7 @@ export class MovieRowComponent implements OnInit {
 
           const newArr = this.movieData.allMovies.concat(this.movies);
           this.movieData.allMovies = newArr;
-          // setTimeout( () => this.loadFlickity(this.index) );
+          setTimeout( () => this.loadFlickity(this.index) );
 
           }
         )
