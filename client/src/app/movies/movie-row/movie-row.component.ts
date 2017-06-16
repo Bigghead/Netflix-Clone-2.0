@@ -38,6 +38,7 @@ export class MovieRowComponent implements OnInit {
 
 
     if(!dataFetched){
+      this.loadFlickity(this.index);
        this.fetchData();
 
     } else {
