@@ -3,11 +3,11 @@ body{
     background-color: black;
     color: white;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 18px;
+    font-size: 18px !important;
 }
 
-nav .brand-logo{
-    color: red;
+nav.brand-logo{
+    color: red !important;
     font-size: 600;
 }
 
