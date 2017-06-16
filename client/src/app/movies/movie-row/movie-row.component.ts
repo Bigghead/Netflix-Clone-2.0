@@ -41,10 +41,9 @@ export class MovieRowComponent implements OnInit {
        this.fetchData();
 
     } else {
-      this.loadFlickity(this.index);
       
       this.movies = this.movieObj.fetchMethodName;
-      // setTimeout( () => this.loadFlickity(this.index) );
+      setTimeout( () => this.loadFlickity(this.index) );
     }
 
   }
