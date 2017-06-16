@@ -45,7 +45,7 @@
 
         <br>
 
-        <h5 *ngIf="!authService.isAuthenticated()">Log In To Add To Your List</h5>
+        <h5 *ngIf="!authService.isAuthenticated()" class='hide-on-med-only'>Log In To Add To Your List</h5>
 
         
 
@@ -57,7 +57,7 @@
       <div class="col m3 s6" *ngFor='let cast of cast; let i = index'>
         <div class="card">
           <div class="card-image">
-            <img class='cast-image'src="{{ imageUrl + cast.profile_path}}">
+            <img class='cast-image responsive-img'src="{{ imageUrl + cast.profile_path}}">
             <!--<span class="card-title">{{ cast.name }}</span>-->
           </div>
           <div class="card-content cast-name">
