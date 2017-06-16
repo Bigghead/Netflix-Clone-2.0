@@ -13,9 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieListComponent implements OnInit, AfterViewInit {
 
   constructor(private movieData: MovieDataService,
-    private currentRoute: ActivatedRoute,
-    private http: Http,
-    private authService: AuthService) { }
+              private currentRoute: ActivatedRoute,
+              private http: Http,
+              public authService: AuthService) { }
 
   latestMovie;
   imageUrl = 'https://image.tmdb.org/t/p/w640';
