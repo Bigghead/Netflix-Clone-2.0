@@ -11,10 +11,16 @@
     padding-left: 40px;
 }
 
+
+.center-arrow{
+    margin:auto;
+}
+
 .cast-image{
     height: 300px;
 }
 
 .cast-name{
     color: black !important;
+    max-height: 75px;
 }
