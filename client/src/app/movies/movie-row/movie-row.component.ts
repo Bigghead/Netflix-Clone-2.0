@@ -27,7 +27,7 @@ export class MovieRowComponent implements OnInit {
           }
   @Input() index: number;
 
-  movies: any[];
+  movies: any[] =  [];
   imageUrl = 'https://image.tmdb.org/t/p/w640';
 
 
