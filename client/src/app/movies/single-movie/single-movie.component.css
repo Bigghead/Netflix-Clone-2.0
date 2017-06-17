@@ -17,10 +17,46 @@
 }
 
 .cast-image{
-    max-height: 325px;
+    /*height: 300px;*/
 }
 
 .cast-name{
     color: black !important;
     max-height: 75px;
+}
+
+@media only screen and (max-width: 400px) {
+    .cast-image {
+        height: 200px;
+    }
+}
+
+@media only screen and (min-width: 400px) {
+    .cast-image {
+        height: 250px;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .cast-image {
+        height: 275px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .cast-image {
+        height: 180px;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .cast-image {
+        height: 200px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .cast-image {
+        height: 225px;
+    }
 }
