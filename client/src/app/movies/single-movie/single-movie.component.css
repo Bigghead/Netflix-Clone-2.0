@@ -60,3 +60,15 @@
         height: 225px;
     }
 }
+
+@media only screen and (min-width: 1000px) {
+    .cast-image {
+        height: 265px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .cast-image {
+        height: 300px;
+    }
+}
