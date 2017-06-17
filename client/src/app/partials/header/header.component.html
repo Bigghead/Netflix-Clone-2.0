@@ -1,6 +1,6 @@
 <nav class=''>
   <div class="nav-wrapper  black lighten-2 white-text ">
-    <div class="row hide-on-med-and-down">
+    <div class="row hide-on-small-only">
 
       <div class="col s4">
         <a routerLink="/" class="brand-logo red-text left">NoobFlix</a>
@@ -20,7 +20,7 @@
 
       <div class="col s4 ">
 
-        <ul id="nav-mobile hide-on-small-only" class="right ">
+        <ul id="nav-mobile" class="right ">
           <li *ngIf='!user; else userIsOn'><a href='/login'>Register/ Log In</a></li>
 
           <ng-template #userIsOn>
