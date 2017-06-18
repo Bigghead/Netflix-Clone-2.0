@@ -1,6 +1,6 @@
 nav{
     /*margin-bottom: 3%;*/
-    height: 50px;
+    height: 60px;
 }
 
 .input-field{
@@ -8,7 +8,7 @@ nav{
 }
 
 input[type="search"] {
-  height: 50px;  
+  height: 60px;  
 }
 
 input[type="search"]:hover {
