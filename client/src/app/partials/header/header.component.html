@@ -20,8 +20,10 @@
 
       <div class="col s4 ">
 
-        <ul id="nav-mobile" class="right ">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li *ngIf='!user; else userIsOn'><a href='/login'>Register/ Log In</a></li>
+          
+          
 
           <ng-template #userIsOn>
             <li *ngIf='!authService.user.userSettings.newUserName'><a [routerLink]="['/user', authService.user._id]">{{ authService.user.userName }}</a></li>
@@ -29,12 +31,14 @@
             <li><a href='/logout'>Log Out</a></li>
           </ng-template>
         </ul>
+    <a style="cursor: pointer;" data-activates="dropdown1" class="dropdown-button hide-on-large-only right" style="margin-right: 15px;"><i class="material-icons">menu</i></a>
+
 
 
       </div>
     </div>
-    <a routerLink="/" class="brand-logo left hide-on-med-and-up red-text">NoobFlix</a>
-    <a style="cursor: pointer;" data-activates="dropdown1" class="dropdown-button hide-on-med-and-up right"><i class="material-icons">menu</i></a>
+    <a routerLink="/" class="brand-logo left hide-on-med-and-up red-text" style="margin-left: 15px;">NoobFlix</a>
+    <a style="cursor: pointer;" data-activates="dropdown1" class="dropdown-button hide-on-med-and-up right" style="margin-right: 15px;"><i class="material-icons">menu</i></a>
 
     <ul id='dropdown1' class='dropdown-content'>
       <li><a routerLink='/'>Netflix Clone</a></li>
