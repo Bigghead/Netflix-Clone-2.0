@@ -26,6 +26,10 @@ input:-webkit-autofill{
     color: white;
 }
 
+.dropdown-content{
+    min-width: 150px;
+}
+
 .small-form{
     height: 50px !important;
 }
