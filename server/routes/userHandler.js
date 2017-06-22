@@ -3,7 +3,7 @@ const User    = require('../models/User.js'),
       Router  = express.Router();
 
 
-Router.post('/:userId/movies', (req, res) => {
+Router.post('/:userId/movies', isLoggedIn,  (req, res) => {
     User.findById(req.params.userId)
         .exec()
         .then(user => {
@@ -19,7 +19,7 @@ Router.post('/:userId/movies', (req, res) => {
 });
 
 
-Router.patch('/:userId/movies', (req, res) => {
+Router.patch('/:userId/movies', isLoggedIn,  (req, res) => {
 
     const movieId = req.body.id
     console.log('heoooo');
@@ -43,7 +43,7 @@ Router.patch('/:userId/movies', (req, res) => {
 })
 
 
-Router.patch('/:userId/edit', (req, res) => {
+Router.patch('/:userId/edit', isLoggedIn,  (req, res) => {
     console.log(req.body);
 
     const { userName, fullName, about } = req.body;
@@ -65,6 +65,14 @@ Router.patch('/:userId/edit', (req, res) => {
         })
         .catch( err => res.send(err))
 })
+
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  } else {
+    res.redirect('/');
+  }
+}
 
 
 module.exports = Router;

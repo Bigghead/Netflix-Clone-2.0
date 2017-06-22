@@ -2,6 +2,9 @@ const Auth0Strategy = require('passport-auth0'),
       passport      = require('passport'),
       // authKeys      = require('./authKeys.js'),
 
+      session             = require('express-session'),
+      MongoStore = require('connect-mongo')(session),
+
       express = require('express'),
       app     = express(),
       router  = express.Router(),
@@ -40,10 +43,11 @@ const strategy = new Auth0Strategy({
     }
 );
 
-router.use(require('express-session')({
+router.use(session({
   secret: process.env.secret || authKeys.secret,
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true, 
+  store: new MongoStore( { mongooseConnection: mongoose.connection } )
 }));
 
 router.use(passport.initialize());
