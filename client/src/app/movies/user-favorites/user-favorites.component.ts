@@ -1,14 +1,14 @@
 import { MovieDataService } from './../../Services/moviedata.service';
 import * as Flickity from 'flickity';
 import { AuthService } from './../../Services/authentication.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-user-favorites',
   templateUrl: './user-favorites.component.html',
   styleUrls: ['./user-favorites.component.css']
 })
-export class UserFavoritesComponent implements OnInit {
+export class UserFavoritesComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService, 
               private movieData: MovieDataService) { }
@@ -16,16 +16,17 @@ export class UserFavoritesComponent implements OnInit {
 
   userFavorites = [];
   imageUrl = 'https://image.tmdb.org/t/p/w640';
+  userListSub;
 
 
   ngOnInit() {
 
     this.userFavorites = this.authService.user.userList;
 
-    // this.movieData.userMovies
-    //               .subscribe( res => {
-    //                 this.userFavorites = res;
-    //               })
+    this.userListSub = this.movieData.userMovies
+                                     .subscribe( res => {
+                                        this.userFavorites = res;
+                                      })
 
     setTimeout( () => this.loadFlickity() );
 
@@ -42,6 +43,12 @@ export class UserFavoritesComponent implements OnInit {
       cellAlign: 'left',
       contain: true
     });
+  }
+
+
+  ngOnDestroy(){
+
+    this.userListSub.unsubscribe();
   }
 
 }

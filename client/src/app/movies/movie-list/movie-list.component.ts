@@ -70,17 +70,8 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    // this.getNewest();
   }
 
-  // getNewest() {
-
-  //   this.http.get(`https://api.themoviedb.org/3/movie/latest?api_key=${Keys.omdbKey}&language=en-US`)
-  //     .map(res => res.json())
-  //     .subscribe(
-  //     (res) => this.latestMovie = res
-  //     )
-  // }
 
   checkAuth() {
     this.http.get('http://localhost:3000/checkAuth')
