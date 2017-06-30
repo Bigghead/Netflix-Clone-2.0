@@ -18,7 +18,7 @@ export class MovieListComponent implements OnInit, AfterViewInit {
               public authService: AuthService) { }
 
   latestMovie;
-  imageUrl = 'https://image.tmdb.org/t/p/w640';
+  imageUrl = 'https://image.tmdb.org/t/p/w185';
 
 
   movieListComponent = [

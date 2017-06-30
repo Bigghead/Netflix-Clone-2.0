@@ -28,7 +28,7 @@ export class MovieRowComponent implements OnInit {
   @Input() index: number;
 
   movies: any[] =  [];
-  imageUrl = 'https://image.tmdb.org/t/p/w640';
+  imageUrl = 'https://image.tmdb.org/t/p/w185';
 
 
   ngOnInit() {
@@ -54,7 +54,7 @@ export class MovieRowComponent implements OnInit {
     // First time load, get data from an outside api
       this.http.get(this.movieObj.url)
         .map(res => res.json())
-        .map(res => {
+        .subscribe( res => {
 
           res.results.forEach(movie => {
 
@@ -62,13 +62,8 @@ export class MovieRowComponent implements OnInit {
             if (!movie.type) {
               movie.type = this.movieObj.type;
             }
-          })
-          return res;
-        })
-        .subscribe( res => {
-
-
-          this.movies = res.results;
+          });
+          this.movies = res.results.slice(0, 10);
           this.movieData[this.movieObj.type] = true;
 
           const newArr = this.movieData.allMovies.concat(this.movies);
