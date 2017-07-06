@@ -63,7 +63,7 @@ export class MovieRowComponent implements OnInit {
               movie.type = this.movieObj.type;
             }
           });
-          this.movies = res.results.slice(0, 10);
+          this.movies = res.results.slice(0, 12);
           this.movieData[this.movieObj.type] = true;
 
           const newArr = this.movieData.allMovies.concat(this.movies);
