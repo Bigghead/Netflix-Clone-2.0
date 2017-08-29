@@ -72,3 +72,33 @@
         height: 300px;
     }
 }
+
+@media only screen and (min-width: 1300px) {
+    .cast-image {
+        height: 325px;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .cast-image {
+        height: 350px;
+    }
+}
+
+@media only screen and (min-width: 1750px) {
+    .cast-image {
+        height: 375px;
+    }
+}
+
+@media only screen and (min-width: 1900px) {
+    .cast-image {
+        height: 385px;
+    }
+}
+
+@media only screen and (min-width: 2050px) {
+    .cast-image {
+        height: 400px;
+    }
+}
