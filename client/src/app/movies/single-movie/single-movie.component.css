@@ -75,6 +75,12 @@
 
 @media only screen and (min-width: 1300px) {
     .cast-image {
+        height: 315px;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .cast-image {
         height: 325px;
     }
 }
