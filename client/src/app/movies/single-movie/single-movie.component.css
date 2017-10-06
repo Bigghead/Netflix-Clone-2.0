@@ -61,6 +61,12 @@
     }
 }
 
+@media only screen and (min-width: 900px) {
+    .cast-image {
+        height: 250px;
+    }
+}
+
 @media only screen and (min-width: 1000px) {
     .cast-image {
         height: 265px;
