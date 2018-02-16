@@ -15,7 +15,7 @@ export class UserFavoritesComponent implements OnInit, OnDestroy {
 
 
   userFavorites = [];
-  imageUrl = 'https://image.tmdb.org/t/p/w640';
+  imageUrl = 'https://image.tmdb.org/t/p/w500';
   userListSub;
 
 

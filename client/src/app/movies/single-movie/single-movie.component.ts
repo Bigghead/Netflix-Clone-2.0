@@ -24,7 +24,7 @@ export class SingleMovieComponent implements OnInit {
 
 
   movie;
-  imageUrl = 'https://image.tmdb.org/t/p/w640';
+  imageUrl = 'https://image.tmdb.org/t/p/w500';
   id: number;
   userLiked = false;
   media_type: string;
