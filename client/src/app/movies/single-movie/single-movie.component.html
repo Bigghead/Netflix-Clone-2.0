@@ -2,7 +2,7 @@
   <div *ngIf='movie'>
     <div class="row">
       <div class="col m6 s12">
-        <img class='responsive-img' src="{{ imageUrl + movie.poster_path  }}" alt="">
+        <img class='responsive-img' src="{{ 'https://image.tmdb.org/t/p/w500' + movie.poster_path  }}" alt="">
       </div>
       <div class="col m6 s12 description">
         <h3 *ngIf="movie.title"><strong>{{ movie.title }}</strong></h3>
