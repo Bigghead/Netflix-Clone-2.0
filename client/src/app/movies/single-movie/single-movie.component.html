@@ -57,11 +57,17 @@
       <div class="col m3 s6" *ngFor='let cast of cast; let i = index'>
         <div class="card">
           <div class="card-image">
-            <img class='cast-image responsive-img'src="{{ imageUrl + cast.profile_path}}">
+            <a href="{{ 'https://en.wikipedia.org/wiki/' + cast.name }}" target='_blank' rel="noopener noreferrer">
+              <img class='cast-image responsive-img'src="{{ imageUrl + cast.profile_path}}">
+            </a>
             <!--<span class="card-title">{{ cast.name }}</span>-->
           </div>
           <div class="card-content cast-name">
-            <p class=''>{{ cast.name }}</p>
+            <p class=''>
+              <a href="{{ 'https://en.wikipedia.org/wiki/' + cast.name }}" target='_blank' rel="noopener noreferrer">
+              {{ cast.name }}
+              </a>
+            </p>
           </div>
         </div>
       </div>

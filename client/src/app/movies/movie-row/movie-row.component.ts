@@ -28,7 +28,7 @@ export class MovieRowComponent implements OnInit {
   @Input() index: number;
 
   movies: any[] =  [];
-  imageUrl = 'https://image.tmdb.org/t/p/w185';
+  imageUrl = 'https://image.tmdb.org/t/p/w500';
 
 
   ngOnInit() {
