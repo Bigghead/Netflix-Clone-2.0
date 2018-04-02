@@ -28,7 +28,7 @@ Router.get('/checkAuth', (req, res, next) => {
     if (req.isAuthenticated()) {
         next();
     } else {
-        res.send('not authorized')
+        res.status(400).json({ status: 'not authorized'})
     }
 }, (req, res) => {
     res.status(200).json(req.user);
